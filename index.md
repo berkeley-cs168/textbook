@@ -7,7 +7,7 @@ nav_order: 0
 
 _By [Peyrin Kao](https://peyrin.github.io), based on lectures by [Sylvia Ratnasamy](https://www2.eecs.berkeley.edu/Faculty/Homepages/ratnasamy.html), [Rob Shakir](https://rob.sh/), and others._
 
-These are the course notes for [CS 168: Computer Security](https://cs168.io/) at [UC Berkeley](https://eecs.berkeley.edu/).
+These are the course notes for [CS 168: Introduction to the Internet](https://cs168.io/) at [UC Berkeley](https://eecs.berkeley.edu/).
 
 Here is the official course description:
 
