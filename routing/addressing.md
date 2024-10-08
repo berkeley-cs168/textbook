@@ -56,7 +56,7 @@ More generally, our addresses have two parts: a network ID,and a host ID. This a
 
 <img width="900px" src="/assets/routing/2-103-address-intuition4.png">
 
-Note that the forwarding table in R9 still needs entries for each individual host inside its own network (i.e. network 3).
+Note that the forwarding table in R9 still needs entries for each individual host inside its own network (i.e. network 2).
 
 Similarly, R4, an internal router with no connections to other networks, needs both entries for individual hosts inside network 3, and aggregated entries for other networks (e.g. 2.* has a next hop of R9). The scale of a forwarding table depends on the number of internal hosts in the same network, plus the number of external networks.
 
