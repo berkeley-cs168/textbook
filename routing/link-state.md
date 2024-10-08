@@ -44,7 +44,7 @@ One thing we have to be careful about is inconsistencies between routers.
 
 Remember, every router is computing the shortest paths independently, and deciding on a next hop accordingly. Each router only controls its own next hop, and cannot influence what the next hop will do. 
 
-For example, suppose R5 computes this shortest path to A, and decides to forward packets to R2. Then, R2 computes this shortest path to A, and decides to forward packets to R5. Both routers computed valid shortest paths, but their decisions resulted in a routing loop.
+For example, suppose R3 computes this shortest path to A, and decides to forward packets to R2. Then, R2 computes this shortest path to A, and decides to forward packets to R3. Both routers computed valid shortest paths, but their decisions resulted in a routing loop.
 
 To avoid this problem, we have to make sure that all routers are producing forwarding decisions that are compatible with each other. What are the requirements for all routers to produce compatible decisions?
 
@@ -67,9 +67,9 @@ To discover neighbors, every router sends a hello message to all of its neighbor
 
 <img width="600px" src="/assets/routing/2-091-hellos.png">
 
-For example, in this network, E sends to both of its neighbors: ``Hello, I'm E.'' Now, B knows that it's connected to E, and C also knows that it's connected to E. Similarly, B says hello to E, so now E knows about B. Likewise, C says hello to E, so E also knows about C.
+For example, in this network, R2 sends to both of its neighbors: "Hello, I'm R2." Now, R1 knows that it's connected to R2, and R3 also knows that it's connected to R2. Similarly, R1 says hello to R2, so now R2 knows about R1. Likewise, R3 says hello to R2, so R2 also knows about R3.
 
-As a result, everybody now knows who their immediate neighbors are. Note that B does not know about C, because B and C are not neighbors.
+As a result, everybody now knows who their immediate neighbors are. Note that R1 does not know about R3, because R1 and R3 are not neighbors.
 
 <img width="900px" src="/assets/routing/2-092-after-hellos.png">
 
