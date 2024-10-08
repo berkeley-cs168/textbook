@@ -167,6 +167,6 @@ By contrast, at Layers 1 and 2, the router must speak the same protocol as the p
 
 <img width="900px" src="/assets/intro/1-19-layers-host-routers.png">
 
-In summary: Each router parses Layers 1 and 2, while the end hosts parse Layers 1 through 7.
+In summary: Each router parses Layers 1 through 3, while the end hosts parse Layers 1 through 7.
 
 <img width="900px" src="/assets/intro/1-30-packet-path.png">
