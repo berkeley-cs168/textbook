@@ -2,6 +2,7 @@
 title: "NAT: Network Address Translation"
 parent: End-to-End
 nav_order: 4
+layout: page-with-toc
 ---
 
 # NAT: Network Address Translation

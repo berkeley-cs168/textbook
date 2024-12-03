@@ -2,6 +2,7 @@
 title: Wireless
 parent: Special Topics
 nav_order: 2
+layout: page-with-toc
 ---
 
 # Wireless

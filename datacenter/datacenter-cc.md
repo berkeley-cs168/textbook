@@ -2,6 +2,7 @@
 title: Congestion Control
 parent: Datacenters
 nav_order: 2
+layout: page-with-toc
 ---
 
 # Congestion Control in Datacenters

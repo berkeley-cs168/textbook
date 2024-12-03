@@ -2,6 +2,7 @@
 title: Router Hardware
 parent: Routing
 nav_order: 7
+layout: page-with-toc
 ---
 
 # Router Hardware

@@ -2,6 +2,7 @@
 title: Topologies
 parent: Datacenters
 nav_order: 1
+layout: page-with-toc
 ---
 
 # Datacenter Topology

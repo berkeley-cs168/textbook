@@ -2,6 +2,7 @@
 title: Layers of the Internet
 parent: Introduction
 nav_order: 2
+layout: page-with-toc
 ---
 
 # Layers of the Internet

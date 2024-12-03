@@ -2,6 +2,7 @@
 title: Routing
 parent: Datacenters
 nav_order: 3
+layout: page-with-toc
 ---
 
 # Datacenter Routing

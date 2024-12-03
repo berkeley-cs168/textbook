@@ -2,6 +2,7 @@
 title: Links
 parent: Introduction
 nav_order: 6
+layout: page-with-toc
 ---
 
 # Links

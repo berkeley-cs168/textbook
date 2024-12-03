@@ -2,6 +2,7 @@
 title: BGP Implementation and Issues
 parent: Routing
 nav_order: 10
+layout: page-with-toc
 ---
 
 # BGP Implementation and Issues

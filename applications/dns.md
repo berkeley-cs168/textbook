@@ -2,6 +2,7 @@
 title: DNS
 parent: Applications
 nav_order: 1
+layout: page-with-toc
 ---
 
 # DNS

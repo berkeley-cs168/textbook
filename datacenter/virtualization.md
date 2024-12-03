@@ -2,6 +2,7 @@
 title: Virtualization
 parent: Datacenters
 nav_order: 5
+layout: page-with-toc
 ---
 
 # Virtualization and Encapsulation

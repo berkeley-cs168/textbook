@@ -2,6 +2,7 @@
 title: Headers
 parent: Introduction
 nav_order: 3
+layout: page-with-toc
 ---
 
 # Headers

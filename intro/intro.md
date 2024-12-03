@@ -2,6 +2,7 @@
 title: Introduction to the Internet
 parent: Introduction
 nav_order: 1
+layout: page-with-toc
 ---
 
 # Introduction to the Internet

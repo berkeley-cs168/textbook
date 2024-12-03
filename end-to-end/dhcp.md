@@ -2,6 +2,7 @@
 title: "DHCP: Joining Networks"
 parent: End-to-End
 nav_order: 3
+layout: page-with-toc
 ---
 
 # DHCP: Joining Networks

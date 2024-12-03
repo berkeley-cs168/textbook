@@ -2,6 +2,7 @@
 title: Model for Inter-Domain Routing
 parent: Routing
 nav_order: 8
+layout: page-with-toc
 ---
 
 # Model for Inter-Domain Routing

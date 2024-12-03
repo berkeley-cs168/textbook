@@ -2,6 +2,7 @@
 title: Routing States
 parent: Routing
 nav_order: 3
+layout: page-with-toc
 ---
 
 # Routing States

@@ -2,6 +2,7 @@
 title: Cellular
 parent: Special Topics
 nav_order: 3
+layout: page-with-toc
 ---
 
 # Cellular

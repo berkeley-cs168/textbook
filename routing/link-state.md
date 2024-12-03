@@ -2,6 +2,7 @@
 title: Link-State Protocols
 parent: Routing
 nav_order: 5
+layout: page-with-toc
 ---
 
 # Link-State Protocols

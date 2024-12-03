@@ -2,6 +2,7 @@
 title: TCP Design
 parent: Transport
 nav_order: 2
+layout: page-with-toc
 ---
 
 # TCP Design

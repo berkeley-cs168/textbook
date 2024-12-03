@@ -2,6 +2,7 @@
 title: HTTP
 parent: Applications
 nav_order: 2
+layout: page-with-toc
 ---
 
 # HTTP

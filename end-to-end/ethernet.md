@@ -2,6 +2,7 @@
 title: Ethernet
 parent: End-to-End
 nav_order: 1
+layout: page-with-toc
 ---
 
 # Ethernet

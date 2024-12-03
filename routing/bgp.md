@@ -2,6 +2,7 @@
 title: Border Gateway Protocol (BGP)
 parent: Routing
 nav_order: 9
+layout: page-with-toc
 ---
 
 # Border Gateway Protocol (BGP)

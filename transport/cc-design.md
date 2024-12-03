@@ -2,6 +2,7 @@
 title: Congestion Control Design
 parent: Transport
 nav_order: 5
+layout: page-with-toc
 ---
 
 # Congestion Control Design

@@ -2,6 +2,7 @@
 title: "ARP: Connecting Layers 2 and 3"
 parent: End-to-End
 nav_order: 2
+layout: page-with-toc
 ---
 
 # ARP: Connecting Layers 2 and 3

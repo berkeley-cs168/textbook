@@ -2,6 +2,7 @@
 title: Introduction to Routing
 parent: Routing
 nav_order: 1
+layout: page-with-toc
 ---
 
 # Introduction to Routing

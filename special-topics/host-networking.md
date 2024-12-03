@@ -2,6 +2,7 @@
 title: Host Networking
 parent: Special Topics
 nav_order: 1
+layout: page-with-toc
 ---
 
 # Host Networking

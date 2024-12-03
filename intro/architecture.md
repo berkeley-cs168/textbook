@@ -2,6 +2,7 @@
 title: Network Architecture
 parent: Introduction
 nav_order: 4
+layout: page-with-toc
 ---
 
 # Network Architecture

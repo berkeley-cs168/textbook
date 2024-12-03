@@ -2,6 +2,7 @@
 title: Addressing
 parent: Datacenters
 nav_order: 4
+layout: page-with-toc
 ---
 
 # Datacenter Addressing

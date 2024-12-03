@@ -2,6 +2,7 @@
 title: Designing Resource Sharing
 parent: Introduction
 nav_order: 5
+layout: page-with-toc
 ---
 
 # Designing Resource Sharing
