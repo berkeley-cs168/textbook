@@ -172,9 +172,9 @@ Consider this diagram of networks. In our original model, R6 needs a separate fo
 
 <img width="900px" src="/assets/routing/2-110-aggregation2.png">
 
-However, if we used hierarchical addressing, then UCB's range (4.12.0.0/16) and UCM's range (4.29.0.0/16) are both subsets of AT&T's range (4.0.0.0/8). This could happen if AT&T allocated those ranges to its subordinate customers UCB and UCM.
+However, if we used hierarchical addressing, then UCB's range (4.12.0.0/16) and Stanford's range (4.29.0.0/16) are both subsets of AT&T's range (4.0.0.0/8). This could happen if AT&T allocated those ranges to its subordinate customers UCB and Stanford.
 
-Now, R6 only needs a single entry for AT&T, UCB, and UCM. We've aggregated the two smaller ranges into the wider range that they both belong to.
+Now, R6 only needs a single entry for AT&T, UCB, and Stanford. We've aggregated the two smaller ranges into the wider range that they both belong to.
 
 
 ## Multi-Homing
