@@ -117,7 +117,7 @@ Using iBGP, every router inside the AS sees both announcements. One says, the eg
 
 <img width="800px" src="/assets/routing/2-184-multilink5.png">
 
-Let's focus on router E. Using IGP, this router can figure out the distance to the west egress router, and the distance to the east egress router. Since the east egress router is closer, routing packets via the east egress router will use up less of this AS's bandwidth. Therefore, this router will import the path via the east egress router. Another router, like one closer to the west egress router, might decide to import a different path.
+Let's focus on router E. Using IGP, this router can figure out the distance to the west egress router (F), and the distance to the east egress router (I). Since the west egress router (F) is closer, routing packets via the west egress router (F) will use up less of this AS's bandwidth. Therefore, this router will import the path via the west egress router (F). Another router, like one closer to the east egress router (I), might decide to import a different path.
 
 <img width="800px" src="/assets/routing/2-185-multilink6.png">
 
@@ -196,7 +196,7 @@ Some attributes are local to an AS, and are only exchanged in iBGP messages. Oth
 
 There are many BGP attributes, but we'll focus on three important ones, which are used to encode the different tiebreakers for importing paths.
 
-The **`LOCAL PREFERENCE**` attribute encodes the Gao-Rexford import rules (top priority tiebreaker) inside a specific AS. An AS can assign a higher value to more preferred routes (e.g. from customers), and a lower value to less preferred routes (e.g. from providers). This attribute is local, and only carried in iBGP messages. This attribute is not sent to other ASes in eBGP announcements, because other ASes don't need to know about this AS's preferences.
+The **LOCAL PREFERENCE** attribute encodes the Gao-Rexford import rules (top priority tiebreaker) inside a specific AS. An AS can assign a higher value to more preferred routes (e.g. from customers), and a lower value to less preferred routes (e.g. from providers). This attribute is local, and only carried in iBGP messages. This attribute is not sent to other ASes in eBGP announcements, because other ASes don't need to know about this AS's preferences.
 
 <img width="900px" src="/assets/routing/2-194-attribute1.png">
 
@@ -206,7 +206,7 @@ By contrast, if router D receives an eBGP announcement from AS\#79, and this AS 
 
 The local preference numbers are arbitrary, and only their relative ranking is important. In the example above, the numbers could have been 300 and 100 instead of 3000 and 1000, and the behavior would be the same. The local preference numbers are often set manually by operators.
 
-The **`ASPATH**` attribute contains a list of ASes along the route being advertised (in reverse order). This attribute is global, and can be sent in eBGP announcements.
+The **ASPATH** attribute contains a list of ASes along the route being advertised (in reverse order). This attribute is global, and can be sent in eBGP announcements.
 
 <img width="800px" src="/assets/routing/2-195-attribute2.png">
 
@@ -216,7 +216,7 @@ The `ASPATH` is the second priority tiebreaker when importing paths. If two anno
 
 If the local preference and path length are tied, the third priority tiebreaker is the IGP cost to the egress router. This cost is stored in the router's local forwarding table (e.g. a local distance-vector protocol would store the cost to every other router in the same AS).
 
-The **`MED**` attribute encodes the preferences of the exporting AS. Equivalently, this attribute represents the distance from the exporting router to the destination (lower numbers are preferred).
+The **MED** attribute encodes the preferences of the exporting AS. Equivalently, this attribute represents the distance from the exporting router to the destination (lower numbers are preferred).
 
 <img width="900px" src="/assets/routing/2-196-attribute3.png">
 
