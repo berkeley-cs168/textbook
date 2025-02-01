@@ -368,7 +368,7 @@ The DS packet solves this problem, because it allows the sender to tell everybod
 
 There's another case where synchronization is critical to ensure fairness. Suppose A wants to send to B, and D wants to send to C.
 
-A transmits to B (A sends RTS, B sends CTS, A sends DS and sends data). C hears the DS and must stay quiet while the data is sent. Now, D is clueless and doomed. D will send an RTS, and won't hear a CTS because C is staying quiet. D will keep retrying at random times, and will keep failing, because it has no idea when A will stop sending data.
+A transmits to B (A sends RTS, B sends CTS, A sends DS and sends data). C hears the CTS and must stay quiet while the data is sent. Now, D is clueless and doomed. D will send an RTS, and won't hear a CTS because C is staying quiet. D will keep retrying at random times, and will keep failing, because it has no idea when A will stop sending data.
 
 By contrast, A knows exactly when it will stop sending data. Just like before, this gives A a huge advantage in the next round of contention. A can immediately re-request and win. On the other hand, D has no idea when to re-request. The only way D will win is if it gets really lucky and sends the request immediately after A is done sending, but before A re-requests.
 
