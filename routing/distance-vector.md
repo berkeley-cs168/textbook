@@ -270,7 +270,7 @@ With this new rule, once the network converges, every router will continue to re
 In the example from earlier, after the network converges, R3 might decide to re-send its announcement, with destination A, next hop R3, and cost via R3 of 3. But R2 will ignore this announcement because its forwarding table has a cheaper route of cost 2 already (the announcement path costs 3 + 1 = 4).
 
 
-## Rule 3: Expiring
+## Rule 4: Expiring
 
 Recall our routing challenge from earlier: The network topology can change. In particular, links and routers can fail. If a router fails in the network, our route might become invalid. The failed router won't tell us about the problem (since it's failed), so we're stuck with this invalid route.
 
@@ -322,7 +322,7 @@ By contrast, the TTL tells the router when to delete a table entry. Each table e
 At this point, we have a mostly-functional routing protocol! Let's add some optimizations for faster convergence.
 
 
-## Rule 4: Poisoning Expired Routes
+## Rule 5: Poisoning Expired Routes
 
 Waiting for routes to expire is slow. To see why, let's rewatch the demo from earlier.
 
@@ -402,7 +402,7 @@ One final modification: Now that our tables contain poison, we have to be carefu
 > - If a table entry expires, **make the entry poison and advertise it**.
 
 
-## Rule 5A: Split Horizon
+## Rule 6A: Split Horizon
 
 Let's go back to our favorite running example again to demonstrate another problem. Suppose we're in steady state, and the forwarding tables have the correct shortest routes to A. Announcements are being periodically re-sent, but all announcements are being rejected because we're in steady state.
 
@@ -445,7 +445,7 @@ This leads us to a solution called **split horizon**, where we never advertise a
 > - If a table entry expires, make the entry poison and advertise it.
 
 
-## Rule 5B: Poison Reverse
+## Rule 6B: Poison Reverse
 
 **Poison reverse** is an alternative way to avoid routing loops. We can use either split horizon or poison reverse to solve the problem from earlier (but not both).
 
@@ -497,7 +497,7 @@ By contrast, if we used the poison reverse approach, R3 explicitly sends poison 
 Note that split horizon and poison reverse are two choices, and you can pick exactly one to use (not both). Either you say nothing back to the next-hop, or you explicitly advertise poison back to the next-hop.
 
 
-## Rule 6: Count to Infinity
+## Rule 7: Count to Infinity
 
 Split horizon or poison reverse helped us avoid length-2 loops, where R1 forwards to R2, and R2 forwards to R1. But we can still get routing loops involving 3 or more routers.
 
@@ -505,7 +505,7 @@ Split horizon or poison reverse helped us avoid length-2 loops, where R1 forward
 
 To see why, consider this network. Suppose the tables reach steady-state. R1 and R2 both forward to R3, which forwards to A.
 
-The A-R3 link goes down! A is now unreachable. Per Rule 4, R3 updates its table to show infinite cost to A, and sends this poison to both R2 and R1.
+The A-R3 link goes down! A is now unreachable. Per Rule 5, R3 updates its table to show infinite cost to A, and sends this poison to both R2 and R1.
 
 <img width="900px" src="/assets/routing/2-077-infinity2.png">
 
