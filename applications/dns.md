@@ -127,13 +127,13 @@ Note that even though recursive resolvers store larger caches, the stub resolver
 
 ## Redundancy
 
-So far, we've been talking about ``the `berkeley.edu` name server,'' but in reality, each zone has multiple name servers. All the name servers for a zone are functionally identical, and each name server can answer any query in the zone.
+So far, we've been talking about "the `berkeley.edu` name server," but in reality, each zone has multiple name servers. All the name servers for a zone are functionally identical, and each name server can answer any query in the zone.
 
 This ensures that we have availability for that zone, and if one name server goes down, the others can keep answering queries for that zone. By convention, zones are required to have two name servers, though in practice, most zones will have at least three.
 
 Usually, one of the name servers is designated as the primary server that actually manages the zone. The rest of the servers are secondary mirror servers that just store and serve a copy of the information on the primary server.
 
-Now, in the DNS lookup, name servers might reply to you with: ``I don't know, but you should ask the `.edu` zone. This zone has 13 name servers. Here are the domains and IP addresses for each of them.'' Then, you can pick which of the name servers to contact next.
+Now, in the DNS lookup, name servers might reply to you with: "I don't know, but you should ask the `.edu` zone. This zone has 13 name servers. Here are the domains and IP addresses for each of them." Then, you can pick which of the name servers to contact next.
 
 
 ## DNS APIs
@@ -176,7 +176,7 @@ Recall that UDP implements ports to support multiple applications on a single se
 
 The first field is a 16 bit **identification field** that is randomly selected per query and used to match requests to responses. When a DNS query is sent, the ID field is filled with random bits. Since UDP is stateless, the DNS response must send back the same bits in the ID field so that the original query sender knows which DNS query the response corresponds to.
 
-The next 16 bits are reserved for flags. The QR bit specifies whether the message is a query (bit is 0) or a response (bit is 1). The RD bit indicates whether you want the resolver to perform a recursive lookup, or just return whatever the name server says (even if it's ``I don't know'').
+The next 16 bits are reserved for flags. The QR bit specifies whether the message is a query (bit is 0) or a response (bit is 1). The RD bit indicates whether you want the resolver to perform a recursive lookup, or just return whatever the name server says (even if it's "I don't know").
 
 Theoretically, you can specify a query type in the flags, though the `IQUERY` type is obsolete, and the `STATUS` type is not really defined, so the `QUERY` type is used for basically everything.
 

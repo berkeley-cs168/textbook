@@ -208,7 +208,7 @@ With these assumptions, our definition of good routes (least-cost) is consistent
 
 One possible way to generate routes is to have the network operator manually populate the forwarding table. This is known as **static routing**.
 
-Static routing by itself isn't practical (e.g. not scalable, prone to human error), but even with a routing protocol implemented, some routes still need to be manually created by operators. You can think of these manual routes as the ``trivial'' or ``base case'' routes, from which the routing protocol generates more complex routes.
+Static routing by itself isn't practical (e.g. not scalable, prone to human error), but even with a routing protocol implemented, some routes still need to be manually created by operators. You can think of these manual routes as the "trivial" or "base case" routes, from which the routing protocol generates more complex routes.
 
 If we're directly connected to another machine that we want to route packets to, we can manually configure a route to forward packets to that other machine. These routes are called **direct routes** or **connected routes**. For example, your home router is connected to your personal computer with a link, so your home router can add an entry in the forwarding table corresponding to your computer. This entry is added by telling the router about the connection, and is not added from running any routing protocol.
 

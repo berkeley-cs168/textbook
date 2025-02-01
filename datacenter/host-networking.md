@@ -143,7 +143,7 @@ To use RDMA, programmers no longer use the socket abstraction. Instead, the main
 
 <img width="300px" src="/assets/datacenter/6-093-queue1.png">
 
-Each element in the queue is called a **work queue element (WQE)**. A WQE lets the application describe what work needs to be done. In English, the WQE in the receive queue might say, ``Take 100 MB starting from address 0xffff1234 on the remote server, and write them to address 0xffff7890 in my local memory.'' In code, the WQE is a struct that contains these instructions, e.g. a pointer to where we're writing the received data.
+Each element in the queue is called a **work queue element (WQE)**. A WQE lets the application describe what work needs to be done. In English, the WQE in the receive queue might say, "Take 100 MB starting from address 0xffff1234 on the remote server, and write them to address 0xffff7890 in my local memory." In code, the WQE is a struct that contains these instructions, e.g. a pointer to where we're writing the received data.
 
 <img width="400px" src="/assets/datacenter/6-094-queue2.png">
 

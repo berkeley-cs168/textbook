@@ -267,9 +267,9 @@ Suppose A wants to send data to B. A successful data transfer involves a sequenc
 
 <img width="900px" src="/assets/wireless/8-018-maca1.png">
 
-1. A transmits a **Request To Send (RTS)** packet with the length of the data. This is A saying: ``I'd like to send k bits to B.''
+1. A transmits a **Request To Send (RTS)** packet with the length of the data. This is A saying: "I'd like to send k bits to B."
 
-2. B transmits a **Clear To Send (CTS)** packet with the length of the data. This tells A that it's safe to send, and confirms that there are no collisions at the receiver. The CTS also warns everybody in B's range: ``I'm B, and I'm about to receive k bits, so please don't talk during this time.''
+2. B transmits a **Clear To Send (CTS)** packet with the length of the data. This tells A that it's safe to send, and confirms that there are no collisions at the receiver. The CTS also warns everybody in B's range: "I'm B, and I'm about to receive k bits, so please don't talk during this time."
 
 3. A transmits the data, and B receives the data. The CTS warning ensures that everybody else in range of the receiver stays quiet during this time.
 

@@ -76,7 +76,7 @@ Notice that as we moved to lower abstraction layers, we wrapped more headers aro
 
 <img width="900px" src="/assets/intro/1-16-wrapping-unwrapping.png">
 
-Each layer only has to understand its own header, and is ``communicating'' (in some sense) with its peers at the same layer. When Secretary A writes the name on the envelope, that's meant for Secretary B to read (not the mailmen, or the boss).
+Each layer only has to understand its own header, and is "communicating" (in some sense) with its peers at the same layer. When Secretary A writes the name on the envelope, that's meant for Secretary B to read (not the mailmen, or the boss).
 
 More formally, on the Internet, peers at the same layer communicate by establishing a protocol at that layer. The protocol only makes sense to entities at that specific layer.
 

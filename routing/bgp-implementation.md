@@ -88,7 +88,7 @@ We've seen how eBGP (path-vector, advertising routes) and IGP (distance-vector o
 
 This solution is relatively simple, though it requires every border router to have an iBGP session with every other router. In a network with B border routers and N routers total, this protocol would require BN iBGP connections, and might scale poorly as local networks get larger.
 
-Note: In reality, there are other ways to combine inter-domain and intra-domain routers. You can look up ``route reflectors'' if you're interested, though they won't be covered in this class.
+Note: In reality, there are other ways to combine inter-domain and intra-domain routers. You can look up "route reflectors" if you're interested, though they won't be covered in this class.
 
 
 ## Multiple Links Between ASes: Hot Potato Routing
@@ -132,7 +132,7 @@ What if a router is equally close to both possible egress routers?
 
 In order to tiebreak, the exporting AS can announce a preference for one route over the other.
 
-Which route does the exporting AS prefer? Again, since bandwidth costs money, the exporting AS prefers the pink path, which uses less of its bandwidth. In the announcement of the pink path, the exporting AS can additionally say ``I prefer if you used this path,'' and in the announcement of the orange path, the exporting AS can additionally say ``I prefer if you avoided this path.''
+Which route does the exporting AS prefer? Again, since bandwidth costs money, the exporting AS prefers the pink path, which uses less of its bandwidth. In the announcement of the pink path, the exporting AS can additionally say "I prefer if you used this path," and in the announcement of the orange path, the exporting AS can additionally say "I prefer if you avoided this path."
 
 <img width="900px" src="/assets/routing/2-187-med2.png">
 
@@ -146,7 +146,7 @@ Using this extra information, the router can select the egress router on the pin
 
 This additional information in the exporting announcement is called the **Multi-Exit Discriminator (MED)**. From the perspective of the exporter, it indicates my preferred router for entering my network. From the perspective of the importer, it indicates the other AS's preferred router for exiting my network and entering the other AS's network.
 
-Another way to interpret the MED is, the distance to the destination, via this router. The exporter can say, ``the west coast router is 3 hops away from the destination,'' and ``the east coast router is 12 hops away from the destination.'' Lower MED numbers are preferred, since the exporter wants to use as little of its own bandwidth as possible. The exporter would rather use 3 of its own links, instead of 12 of its own links.
+Another way to interpret the MED is, the distance to the destination, via this router. The exporter can say, "the west coast router is 3 hops away from the destination," and "the east coast router is 12 hops away from the destination." Lower MED numbers are preferred, since the exporter wants to use as little of its own bandwidth as possible. The exporter would rather use 3 of its own links, instead of 12 of its own links.
 
 
 ## Import Policy Priority

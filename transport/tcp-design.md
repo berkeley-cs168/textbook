@@ -115,7 +115,7 @@ If W is the maximum number of in-flight packets, then the sender can start by se
 
 How should W be selected?
 
-We want to fully use our available network capacity (``fill the pipe''). If W is too low, we are not using all of the bandwidth available to us.
+We want to fully use our available network capacity ("fill the pipe"). If W is too low, we are not using all of the bandwidth available to us.
 
 However, we don't want to overload links, since other people may be using that link (congestion control). We also don't want to overload the receiver, who needs to receive and process all the packets from the sender (flow control).
 
@@ -173,11 +173,11 @@ For example, suppose the recipient has received and processed packets 1 and 2. T
 
 However, memory is not unlimited, and the recipient's buffer size for storing out-of-order packets is finite. The recipient has to store every out-of-order packet in memory until the missing packets in between arrive. If the connection has a lot of packet loss and reordering, the recipient might run out of memory.
 
-**Flow control** ensures that the recipient's buffer does not run out of memory. To achieve this, we have the recipient tell the sender how much space is left in the buffer. The amount of space left in the recipient buffer is called the **advertised window**. In the acknowledgment, the recipient says ``I have received these packets, and I have X bytes of space left to hold packets.''
+**Flow control** ensures that the recipient's buffer does not run out of memory. To achieve this, we have the recipient tell the sender how much space is left in the buffer. The amount of space left in the recipient buffer is called the **advertised window**. In the acknowledgment, the recipient says "I have received these packets, and I have X bytes of space left to hold packets."
 
 <img width="900px" src="/assets/transport/3-026-buffer2.png">
 
-When the sender learns about the advertised window, the sender adjusts its window accordingly. Specifically, the number of packets in flight cannot exceed the recipient's advertised window. If the recipient says ``my buffer has enough space for 5 packets,'' the sender must set the window to be at most 5 packets (even if the bandwidth might allow for more packets to be in flight).
+When the sender learns about the advertised window, the sender adjusts its window accordingly. Specifically, the number of packets in flight cannot exceed the recipient's advertised window. If the recipient says "my buffer has enough space for 5 packets," the sender must set the window to be at most 5 packets (even if the bandwidth might allow for more packets to be in flight).
 
 
 ## Window Size: Congestion Control
@@ -217,11 +217,11 @@ Instead of sending an acknowledgement for a specific packet, each time we send a
 
 <img width="600px" src="/assets/transport/3-029-ack2.png">
 
-In this example, the acks now say: ``I received 1,'' and ``I received 1 and 2'', and ``I received 1, 2, 3'', and ``I received 1, 2, 3, 4.''
+In this example, the acks now say: "I received 1," and "I received 1 and 2", and "I received 1, 2, 3", and "I received 1, 2, 3, 4."
 
 Even though the second ack was dropped, the third and fourth acks help the sender confirm that packet 2 was received, and packet 2 no longer needs to be re-sent.
 
-As more packets are sent, the list of all packets received is going to get very long. Full information acks can abbreviate this information by saying: ``I have received all packets up to \#12. Also, I received \#14 and \#15.'' Formally, we give the highest cumulative ack (all packets less than or equal to this number have been received), plus a list of any additional packets received.
+As more packets are sent, the list of all packets received is going to get very long. Full information acks can abbreviate this information by saying: "I have received all packets up to \#12. Also, I received \#14 and \#15." Formally, we give the highest cumulative ack (all packets less than or equal to this number have been received), plus a list of any additional packets received.
 
 Even with this abbreviation, full information acks can get long. For example, if all even-numbered packets are dropped, then the highest cumulative ack will always be 1 (we can only say all packets up to 1 have been received, since 2 is dropped). The rest of the received packets will have to be in a list like [1, 3, 5, 7, 9, ...] which can get very long.
 
@@ -231,9 +231,9 @@ A compromise between individual acks (every ack drop forces re-sending) and full
 
 <img width="900px" src="/assets/transport/3-031-ack4.png">
 
-In this example, where even-numbered packets are dropped, every cumulative ack would say: ``I received all packets up to and including 1.'' Even though 3 and 5 were received, the cumulative ack will not encode this information, because it only confirms receipts of consecutive packets starting from 1.
+In this example, where even-numbered packets are dropped, every cumulative ack would say: "I received all packets up to and including 1." Even though 3 and 5 were received, the cumulative ack will not encode this information, because it only confirms receipts of consecutive packets starting from 1.
 
-Cumulative acks no longer have scaling issues (we're always sending one number, not a list of numbers). However, they can be more ambiguous, as in the case above. The sender sees three acknowledgements all saying ``I received everything up to and including 1,'' and can deduce that 3 packets were received (packet 1, and two other packets), but cannot deduce what those other two packets are.
+Cumulative acks no longer have scaling issues (we're always sending one number, not a list of numbers). However, they can be more ambiguous, as in the case above. The sender sees three acknowledgements all saying "I received everything up to and including 1," and can deduce that 3 packets were received (packet 1, and two other packets), but cannot deduce what those other two packets are.
 
 
 ## Detecting Loss Early
@@ -252,9 +252,9 @@ If we use full-information acks, the strategy is pretty similar, and the acks wi
 
 <img width="900px" src="/assets/transport/3-033-fast-retransmit2.png">
 
-If packet 5 is lost, the acks might say ``up to 4'', then ``up to 4, plus 6'', then ``up to 4, plus 6, 7'', then ``up to 4, plus 6, 7, 8.'' At this point, if K=3, then K packets after 5 have been acked, so we can declare that packet 5 is lost.
+If packet 5 is lost, the acks might say "up to 4", then "up to 4, plus 6", then "up to 4, plus 6, 7", then "up to 4, plus 6, 7, 8." At this point, if K=3, then K packets after 5 have been acked, so we can declare that packet 5 is lost.
 
-If we use cumulative acks, this strategy can be more ambiguous. If packet 5 is lost, then the acks might say ``up to 4'' (acking 4), ``up to 4'' (acking 6), ``up to 4'' (acking 7), ``up to 4'' (acking 8). The sender is seeing **duplicate acks** because of the gap in consecutive packets. If K=3, then we can declare packet 5 lost after receiving 3 duplicate packets (corresponding to 3 more packets acked after the gap), for a total of 4 duplicates.
+If we use cumulative acks, this strategy can be more ambiguous. If packet 5 is lost, then the acks might say "up to 4" (acking 4), "up to 4" (acking 6), "up to 4" (acking 7), "up to 4" (acking 8). The sender is seeing **duplicate acks** because of the gap in consecutive packets. If K=3, then we can declare packet 5 lost after receiving 3 duplicate packets (corresponding to 3 more packets acked after the gap), for a total of 4 duplicates.
 
 <img width="900px" src="/assets/transport/3-034-fast-retransmit3.png">
 
@@ -280,15 +280,15 @@ Also, the sender notices that K=3 packets after packet 5 (namely 6, 7, and 8) ha
 
 Now, let's redo this example with cumulative ACKs.
 
-4 arrives, and the recipient sends an ack for 4, which says ``ack everything up to 2.'' At this point, the sender knows a packet must have arrived, but does not know that it's 4. Still, the sender can send 9 next. Note that the window is not violated, because even though the sender seemingly has 7 un-acked packets, one of them did get acked by the duplicate ``ack everything up to 2,'' so there are only 6 packets in flight.
+4 arrives, and the recipient sends an ack for 4, which says "ack everything up to 2." At this point, the sender knows a packet must have arrived, but does not know that it's 4. Still, the sender can send 9 next. Note that the window is not violated, because even though the sender seemingly has 7 un-acked packets, one of them did get acked by the duplicate "ack everything up to 2," so there are only 6 packets in flight.
 
-6 arrives, and the recipient sends an ack for 6, which still says ``ack everything up to 2.'' Again, the sender deduces that another packet arrived, and can send 10 next.
+6 arrives, and the recipient sends an ack for 6, which still says "ack everything up to 2." Again, the sender deduces that another packet arrived, and can send 10 next.
 
-7 arrives, and the recipient sends an ack for 7, which still says ``ack everything up to 2.'' The sender deduces that another packet arrived, and can send 10.
+7 arrives, and the recipient sends an ack for 7, which still says "ack everything up to 2." The sender deduces that another packet arrived, and can send 10.
 
-At this point, the sender notices that ``ack everything up to 2'' has arrived 3 duplicate times (in addition to the initial ack for 2). The next un-acked packet is 3, so the sender will re-send 3.
+At this point, the sender notices that "ack everything up to 2" has arrived 3 duplicate times (in addition to the initial ack for 2). The next un-acked packet is 3, so the sender will re-send 3.
 
-This is when things get ambiguous. When 8, 9, and 10 arrive at the recipient, the sender will receive three more copies of ``ack everything up to 2.'' (We're assuming the recipient hasn't received 3 yet, since it was re-sent after 9 and 10).
+This is when things get ambiguous. When 8, 9, and 10 arrive at the recipient, the sender will receive three more copies of "ack everything up to 2." (We're assuming the recipient hasn't received 3 yet, since it was re-sent after 9 and 10).
 
 The sender can now send 12, 13, and 14, since three more acks have arrived, but which packet should be re-sent next? Should the sender re-send 3, 4, 5, or something else?
 

@@ -26,7 +26,7 @@ A better approach would be to translate the destination IP address to its corres
 
 **ARP (Address Resolution Protocol)** allows machines to translate an IP address into its corresponding MAC address.
 
-To request a translation, a machine can broadcast a soliciation message: ``I have MAC address `f8:ff:c2:2b:36:16`. What is the MAC address of the machine with IP 192.0.2.1?''
+To request a translation, a machine can broadcast a soliciation message: "I have MAC address `f8:ff:c2:2b:36:16`. What is the MAC address of the machine with IP 192.0.2.1?"
 
 All machines who are not this IP address ignore the message. The user who has this IP address unicasts a reply to the sender's MAC address, saying ``I am 192.0.2.1, and my MAC address is `a2:ff:28:02:f2:10`.
 

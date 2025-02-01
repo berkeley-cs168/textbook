@@ -28,7 +28,7 @@ Note that even though there are multiple protocols at a given layer, you can com
 
 <img width="900px" src="/assets/intro/1-31-multi-protocols.png">
 
-If you look at this diagram, you'll notice there's only one protocol at Layer 3. This is the ``narrow waist'' that enables Internet connectivity. Ultimately, everybody on the Internet must agree to speak IP so that packets can be sent across the Internet.
+If you look at this diagram, you'll notice there's only one protocol at Layer 3. This is the "narrow waist" that enables Internet connectivity. Ultimately, everybody on the Internet must agree to speak IP so that packets can be sent across the Internet.
 
 
 ## Demultiplexing
@@ -62,7 +62,7 @@ Note: The term **socket** refers to an OS mechanism for connecting an applicatio
 
 Why did we design the Internet with the layering structure that we did? Why do only the hosts understand Layers 4 and 7, and not the routers as well?
 
-The **end-to-end principle** offers wisdom and guidance for designing the Internet. David D. Clark, a scientist at MIT and a member of the Internet Architecture Board, was a major contributor to this principle. Two of his papers, ``End-to-End Arguments in System Design'' (1981) and ``The Design Philosophy of the DARPA Internet Protocols'' (1988), were hugely influential on the philosophy of the Internet design.
+The **end-to-end principle** offers wisdom and guidance for designing the Internet. David D. Clark, a scientist at MIT and a member of the Internet Architecture Board, was a major contributor to this principle. Two of his papers, "End-to-End Arguments in System Design" (1981) and "The Design Philosophy of the DARPA Internet Protocols" (1988), were hugely influential on the philosophy of the Internet design.
 
 The end-to-end principle guides the debate about what functionality the network does and doesn't implement. The principle is quite broad and has many applications, but we'll focus on the question of: Should we implement reliability (Layer 4) in the network, or only at the end hosts?
 
@@ -96,4 +96,4 @@ Here's an example of the end-to-end principle not being a strict rule. Even thou
 
 The end-to-end principle extends to other fields as well. For example, in security, the end-to-end principle might say that two end hosts communicating should encrypt their messages at the end hosts, instead of at intermediate points in the network.
 
-The end-to-end argument in Clark's words: ``The function in question can completely and correctly be implemented only with the knowledge and help of the application at the end points. Therefore, providing that function as a feature of the communication system itself is not possible. Sometimes an incomplete version of the function provided by the communication system may be useful as a performance enhancement.''
+The end-to-end argument in Clark's words: "The function in question can completely and correctly be implemented only with the knowledge and help of the application at the end points. Therefore, providing that function as a feature of the communication system itself is not possible. Sometimes an incomplete version of the function provided by the communication system may be useful as a performance enhancement."

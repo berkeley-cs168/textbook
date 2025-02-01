@@ -147,7 +147,7 @@ What if the reservation request is lost along the way? 1 and 2 agree, but the re
 
 What if the request is sent and everybody agrees, but the confirmation on the way back is dropped? 4 and 3 see the confirmation, but the confirmation packet is dropped before it reaches 2 and 1.
 
-What if the reservation is declined? Should the end host try again and request less? Should the end host wait a bit and try again with the same request? Should the router say in the rejection, ``I can't do 10 Mbps, but I can give you 8 Mbps?''
+What if the reservation is declined? Should the end host try again and request less? Should the end host wait a bit and try again with the same request? Should the router say in the rejection, "I can't do 10 Mbps, but I can give you 8 Mbps?"
 
 We won't solve every design problem, but hopefully you're noticing that circuit switching is harder to implement than it first seemed.
 

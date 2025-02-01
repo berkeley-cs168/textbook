@@ -22,19 +22,19 @@ Alice, Bob, and Chuck are all working for Joe's Tire Shop. They have private IP 
 
 <img width="900px" src="/assets/end-to-end/5-056-nat1.png">
 
-Alice wants to send a message to an external public server with public IP address S. She sends a packet that says ``From: A, To: S.'' If we sent this packet naively, S would be unable to send replies, because A is a private IP address.
+Alice wants to send a message to an external public server with public IP address S. She sends a packet that says "From: A, To: S." If we sent this packet naively, S would be unable to send replies, because A is a private IP address.
 
 <img width="900px" src="/assets/end-to-end/5-057-nat2.png">
 
-Instead, when the packet reaches the gateway router, it rewrites the header to say ``From: R1, To: S.'' The router also makes a note: If I get any replies from S, they should go to A.
+Instead, when the packet reaches the gateway router, it rewrites the header to say "From: R1, To: S." The router also makes a note: If I get any replies from S, they should go to A.
 
 <img width="900px" src="/assets/end-to-end/5-058-nat3.png">
 
-Now, when S gets a packet, it can send replies to the public address R1: ``From: S, To: R1.'' When R1, the gateway router, receives the reply, it checks its note, and rewrites the header to say ``From: S, To: A.'' Then, the packet gets sent back to A.
+Now, when S gets a packet, it can send replies to the public address R1: "From: S, To: R1." When R1, the gateway router, receives the reply, it checks its note, and rewrites the header to say "From: S, To: A." Then, the packet gets sent back to A.
 
 <img width="900px" src="/assets/end-to-end/5-059-nat4.png">
 
-Now, Alice, Bob, and Chuck can all send outgoing packets. When the router receives a packet, it must remember a mapping between the external destination and the internal sender. (``B just sent a packet to N, so any replies from N should be sent back to B.'')
+Now, Alice, Bob, and Chuck can all send outgoing packets. When the router receives a packet, it must remember a mapping between the external destination and the internal sender. ("B just sent a packet to N, so any replies from N should be sent back to B.")
 
 One problem arises if Alice and Bob both want to talk to S.
 
@@ -44,11 +44,11 @@ We now have ambiguity if a reply arrives from S. Should the router send this rep
 
 <img width="900px" src="/assets/end-to-end/5-061-nat6.png">
 
-We can solve this problem by using logical ports, from Layer 4. Alice's connection says: ``From: A, Port 50000, To: S, Port 80.'' The router rewrites this to say ``From: R1, Port 50000, To: S, Port 80,'' just like before. The note now says, if I get any replies from S, Port 80, to R1, Port 50000, it should go to A.
+We can solve this problem by using logical ports, from Layer 4. Alice's connection says: "From: A, Port 50000, To: S, Port 80." The router rewrites this to say "From: R1, Port 50000, To: S, Port 80," just like before. The note now says, if I get any replies from S, Port 80, to R1, Port 50000, it should go to A.
 
 <img width="900px" src="/assets/end-to-end/5-062-nat7.png">
 
-Bob could create a separate connection that says: ``From B, Port 60000, To: S, Port 80.'' The router rewrites this to say ``From: R1, Port 60000, To: S, Port 80,'' just like before. The note for this connection says, if I get any replies from S, Port 80 to R1, Port 60000, it should to go B.
+Bob could create a separate connection that says: "From B, Port 60000, To: S, Port 80." The router rewrites this to say "From: R1, Port 60000, To: S, Port 80," just like before. The note for this connection says, if I get any replies from S, Port 80 to R1, Port 60000, it should to go B.
 
 <img width="900px" src="/assets/end-to-end/5-063-nat8.png">
 
@@ -63,21 +63,21 @@ We have one last issue: What if, instead of Port 50000 and Port 60000, Alice and
 
 <img width="900px" src="/assets/end-to-end/5-065-nat10.png">
 
-Now, the router remembers two connections: (A Port 50000 to S Port 80), and (B Port 50000 to S Port 80). If the router receives an incoming packet ``From: S, Port 80, To: R1 Port 50000,'' it's ambiguous whether this packet was from A or B's connection.
+Now, the router remembers two connections: (A Port 50000 to S Port 80), and (B Port 50000 to S Port 80). If the router receives an incoming packet "From: S, Port 80, To: R1 Port 50000," it's ambiguous whether this packet was from A or B's connection.
 
 <img width="900px" src="/assets/end-to-end/5-066-nat11.png">
 
-The last fix we have to make is to also allow the router to rewrite the port number. When Bob sends ``From: B, Port 50000, To: S, Port 80,'' the router realizes that someone else already has a connection using Port 50000, to S Port 80. Therefore, the router makes up a ``fake'' port number for Bob (let's use 60000) and rewrites both the source IP and source port to get: ``From: R1, Port 60000, To: S, Port 80.''
+The last fix we have to make is to also allow the router to rewrite the port number. When Bob sends "From: B, Port 50000, To: S, Port 80," the router realizes that someone else already has a connection using Port 50000, to S Port 80. Therefore, the router makes up a "fake" port number for Bob (let's use 60000) and rewrites both the source IP and source port to get: "From: R1, Port 60000, To: S, Port 80."
 
 As before, the router remembers the active connection (A Port 50000 to S Port 80), but for Bob, the router additionally notes the fake port number: (B Port 50000, faked as 60000, to S Port 80).
 
 <img width="900px" src="/assets/end-to-end/5-067-nat12.png">
 
-Now, if the router receives an incoming packet ``From: S, Port 80, To: R1, Port 50000,'' this must be for Alice. By contrast, an incoming packet like ``From: S, Port 80, To: R1, Port 60000,'' with the fake port number, this must be for Bob.
+Now, if the router receives an incoming packet "From: S, Port 80, To: R1, Port 50000," this must be for Alice. By contrast, an incoming packet like "From: S, Port 80, To: R1, Port 60000," with the fake port number, this must be for Bob.
 
 <img width="900px" src="/assets/end-to-end/5-068-nat13.png">
 
-Note that Bob has no idea that the router is changing his port number. When the router forwards this packet back to Bob, the fake port number must be changed back to the original port number. ``From: S, Port 80, To: R1, Port 60000'' must be rewritten as ``From: S, Port 80, To: R1, Port 60000.'' More generally, none of the private clients should need to know or care about their packets getting rewritten. The router should be giving all of them the illusion that they're sending and receiving packets from their private IP address and whatever ports they choose.
+Note that Bob has no idea that the router is changing his port number. When the router forwards this packet back to Bob, the fake port number must be changed back to the original port number. "From: S, Port 80, To: R1, Port 60000" must be rewritten as "From: S, Port 80, To: R1, Port 60000." More generally, none of the private clients should need to know or care about their packets getting rewritten. The router should be giving all of them the illusion that they're sending and receiving packets from their private IP address and whatever ports they choose.
 
 
 ## NAT: Implementation
@@ -108,7 +108,7 @@ Note that we generally don't use NAT for IPv6, because there are enough IPv6 add
 
 So far, we've assumed that connections are always initiated by the client with the private IP address. In other words, the first packet is always outgoing, from client to server. This is consistent with how most home networks operate. When you load a website in your browser, you're the client initiating the connection. It's generally not the case that others are trying to connect to you.
 
-But, what if you were running a server, and you did want people from the outside world to be able to initiate connections to this server? Users from the outside can't send packets to a private IP address. They could try to send packets to the router's IP address, but if the router gets a packet like ``From: outside user, To: R1, Port 28,'' the router has no idea which of the private clients to forward this packet to. This is the very first packet of a new connection, so the router's table has no information about this connection yet.
+But, what if you were running a server, and you did want people from the outside world to be able to initiate connections to this server? Users from the outside can't send packets to a private IP address. They could try to send packets to the router's IP address, but if the router gets a packet like "From: outside user, To: R1, Port 28," the router has no idea which of the private clients to forward this packet to. This is the very first packet of a new connection, so the router's table has no information about this connection yet.
 
 <img width="900px" src="/assets/end-to-end/5-071-inbound-nat.png">
 

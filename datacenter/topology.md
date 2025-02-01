@@ -164,7 +164,7 @@ Unlike custom-built switches, where we scaled the network by building a bigger s
 
 Clos networks have been used in other applications too, and are named for their inventor (Charles Clos, 1952).
 
-In a classic Clos network, we'd have all the racks on the left send data to the racks on the right. In datacenters, racks can both send and receive data, so instead of having a separate layer of senders and recipients, we can have a single layer with all the racks (acting as either sender or recipient). Then, data travels along one of the many paths deeper into the network, and then back out to reach the recipient. This result is called a **folded Clos network**, because we've ``folded'' the sender and recipient layers into one.
+In a classic Clos network, we'd have all the racks on the left send data to the racks on the right. In datacenters, racks can both send and receive data, so instead of having a separate layer of senders and recipients, we can have a single layer with all the racks (acting as either sender or recipient). Then, data travels along one of the many paths deeper into the network, and then back out to reach the recipient. This result is called a **folded Clos network**, because we've "folded" the sender and recipient layers into one.
 
 <img width="900px" src="/assets/datacenter/6-021-clos3.png">
 

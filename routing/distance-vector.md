@@ -19,15 +19,15 @@ To gain some intuition for the routing protocol we'll study in this section, con
 
 To start out, every router's forwarding table is empty. Our goal is to fill in the forwarding tables of every router, such that packets can be routed from anywhere to the destination, A.
 
-To start, A can tell R1: ``I am A.'' Now, R1 knows how to forward packets to A.
+To start, A can tell R1: "I am A." Now, R1 knows how to forward packets to A.
 
-Now that R1 has a path to A, it can tell its neighbors, R2 and R3: ``I am R1, and I can reach A.''
+Now that R1 has a path to A, it can tell its neighbors, R2 and R3: "I am R1, and I can reach A."
 
 <img width="800px" src="/assets/routing/2-033-sketch2.png">
 
 Now, R2 and R3 know that they can reach A by forwarding packets to R1.
 
-R2 can now tell its neighbors, R4 and R5: ``I am R2, and I can reach A.'' Similarly, R3 can tell its neighbors, R6 and R7: ``I am R3, and I can reach A.''
+R2 can now tell its neighbors, R4 and R5: "I am R2, and I can reach A." Similarly, R3 can tell its neighbors, R6 and R7: "I am R3, and I can reach A."
 
 <img width="800px" src="/assets/routing/2-034-sketch3.png">
 
@@ -57,7 +57,7 @@ In these notes, we'll focus on a single section for simplicity, but the protocol
 
 In this protocol, it's easy to confuse the the direction in which announcements and messages are sent.
 
-The announcements for how to reach A start at A, and propagate outward. For example, B sent an announcement to D, saying ``I am B, and messages for A can be sent through me.''
+The announcements for how to reach A start at A, and propagate outward. For example, B sent an announcement to D, saying "I am B, and messages for A can be sent through me."
 
 By contrast, the actual messages being sent to A are sent inward, toward A. For example, a message might start at D and be sent to B on its way to A.
 
@@ -76,9 +76,9 @@ In this scenario, both R3 and R4 will announce that they can reach A. Should R5 
 
 Recall that our goal is to find least-cost routes through the network. To allow routers to pick the least-cost path out of multiple being advertised, we'll need to also include costs in the announcements.
 
-R3's announcement now says: ``I am R3, and I can reach A with cost 3.''
+R3's announcement now says: "I am R3, and I can reach A with cost 3."
 
-R4's announcement now says: ``I am R4, and I can reach A with cost 2.''
+R4's announcement now says: "I am R4, and I can reach A with cost 2."
 
 Now, R5 notices that R4 is offering the shorter path, and decides to forward packets via R4.
 
@@ -111,11 +111,11 @@ R5 might not hear about both paths simultaneously, so we'll need to be more prec
 
 How do we know if a new path is better or worse? We have to be careful, because not all link costs are the same. When someone advertises a path, the cost via that path is actually the sum of two numbers: The link cost from you to the neighbor, plus the cost from the neighbor to the destination (as advertised by the neighbor).
 
-As a concrete example, suppose we hear: ``I am R1, and A is 5 away from me.'' The cost of this new path is actually 1 (the link cost from us to R1), plus 5 (the cost from R1 to A, from the advertisement), which is 6.
+As a concrete example, suppose we hear: "I am R1, and A is 5 away from me." The cost of this new path is actually 1 (the link cost from us to R1), plus 5 (the cost from R1 to A, from the advertisement), which is 6.
 
 <img width="600px" src="/assets/routing/2-041-costs1.png">
 
-Later, we might hear: ``I am R2, and A is 3 away from me.'' It is incorrect to just look at the cost in the advertisement. In this case, the cost of the new path is actually 10 (the link cost from us to R2), plus 3 (the cost from R2 to A, from the advertisement), which is 13. This cost is not better than our best-known cost of 6, so we don't update the table. Packets still get forwarded to R1.
+Later, we might hear: "I am R2, and A is 3 away from me." It is incorrect to just look at the cost in the advertisement. In this case, the cost of the new path is actually 10 (the link cost from us to R2), plus 3 (the cost from R2 to A, from the advertisement), which is 13. This cost is not better than our best-known cost of 6, so we don't update the table. Packets still get forwarded to R1.
 
 <img width="600px" src="/assets/routing/2-042-costs2.png">
 
@@ -149,7 +149,7 @@ Note: Although we're showing a single destination for simplicity, don't forget t
 
 ## Bellman-Ford Demo
 
-Terminology note: When we send a message like ``I am R1, and I can reach A with cost 5,'' to our neighbors, this is often called **announcing** or **advertising** a route. Notice that the advertisement contains three values: the destination, your identity (so your neighbors can forward to you), and the total cost from you to the destination.
+Terminology note: When we send a message like "I am R1, and I can reach A with cost 5," to our neighbors, this is often called **announcing** or **advertising** a route. Notice that the advertisement contains three values: the destination, your identity (so your neighbors can forward to you), and the total cost from you to the destination.
 
 To restate the algorithm so far one more time:
 
@@ -210,7 +210,7 @@ Later, we might hear a different advertisement from R2, saying that A is 8 away 
 
 <img width="900px" src="/assets/routing/2-053-change2.png">
 
-However, we have to be careful about rejecting this advertisement. The router making the announcement (R2), was the same as the next hop router we were using. R2 is trying to say: ``If you're using me as a next hop, my distance to A is no longer 3, it's 8.'' But we ignored this message because we weren't thinking about the possibility that paths might change.
+However, we have to be careful about rejecting this advertisement. The router making the announcement (R2), was the same as the next hop router we were using. R2 is trying to say: "If you're using me as a next hop, my distance to A is no longer 3, it's 8." But we ignored this message because we weren't thinking about the possibility that paths might change.
 
 To fix this, we have to modify our update rule. If we hear an announcement from the next-hop router (the router with the best-known path that we were forwarding packets to), we should treat that announcement as an update, and edit our forwarding table. We should do this even if the announcement produces a worse path, because the next hop could be telling us that the path cost has changed and gotten worse.
 
@@ -276,11 +276,11 @@ Recall our routing challenge from earlier: The network topology can change. In p
 
 To solve this problem, we'll give every route (i.e. every table entry) a finite **time to live (TTL)**. This is a countdown timer, telling us how much longer we can keep this forwarding entry.
 
-Periodic updates help us confirm that a route still exists. If we get an advertisement from the next-hop, we can reset (``recharge'') the TTL to its original value.
+Periodic updates help us confirm that a route still exists. If we get an advertisement from the next-hop, we can reset ("recharge") the TTL to its original value.
 
 If something in the network fails, we'll stop getting periodic updates. Eventually, the TTL will expire. If the TTL expires, we'll delete the entry from the table. Intuitively: We aren't getting updates anymore, so this route is probably no longer valid.
 
-Here's an example of the TTL in action. In this example, we are R3. At time t=0, we hear an announcement: ``I'm R2, and A is 5 away from me.'' Our table doesn't have an entry for A, so we'll accept this path, and set its TTL to 11. Notice that this TTL is associated with the specific table entry. If we had multiple table entries, they would each have their own TTL. 
+Here's an example of the TTL in action. In this example, we are R3. At time t=0, we hear an announcement: "I'm R2, and A is 5 away from me." Our table doesn't have an entry for A, so we'll accept this path, and set its TTL to 11. Notice that this TTL is associated with the specific table entry. If we had multiple table entries, they would each have their own TTL. 
 
 <img width="900px" src="/assets/routing/2-056-ttl1.png">
 
@@ -290,7 +290,7 @@ Time passes. At t=1, the TTL is now 10. At t=2, the TTL is now 9. At t=3, the TT
 
 <img width="900px" src="/assets/routing/2-057-ttl2.png">
 
-At t=5, R2 does its periodic re-sending of the announcement: ``I'm R2, and A is 5 away from me.'' We look in our table and realize that R2 is the current next-hop to A, so we should accept this advertisement (per Rule 2) and update the table.
+At t=5, R2 does its periodic re-sending of the announcement: "I'm R2, and A is 5 away from me." We look in our table and realize that R2 is the current next-hop to A, so we should accept this advertisement (per Rule 2) and update the table.
 
 Because we got a confirmation of this route still existing, the TTL can be reset back to its initial value of 11. We need to get another confirmation of this route from R2 in the next 11 seconds.
 
@@ -332,7 +332,7 @@ In this example, we are R3. Assume that by t=5, we've learned a route to A, via 
 
 At t=6, the A-to-R2 link goes down! The table entry is now busted, because if we forwarded packets to R2, they wouldn't actually reach A. However, we don't know that this entry is busted yet. We have to wait another 10 seconds for this route to expire.
 
-Also at t=6, we get a new announcement: ``I'm R1, and A is 1 away from me.'' We look in our table, and we already have a way to reach A, so we reject this announcement. (Note: It's not important for this demo, but we're assuming we don't accept equal-cost paths here.)
+Also at t=6, we get a new announcement: "I'm R1, and A is 1 away from me." We look in our table, and we already have a way to reach A, so we reject this announcement. (Note: It's not important for this demo, but we're assuming we don't accept equal-cost paths here.)
 
 If only we knew that our existing route is busted, we could accept this new advertisement right now. But instead, we're doomed to wait another 10 seconds of using this busted path.
 
@@ -340,7 +340,7 @@ If only we knew that our existing route is busted, we could accept this new adve
 
 Time passes. By t=11 (five seconds later), the busted route still has 5 seconds of TTL remaining.
 
-At t=11, we get another announcement: ``I'm R1, and A is 1 away from me.'' R1 is re-sending its announcement from earlier. Again, we look in our table, and we still have an entry for A, so we reject this announcement again.
+At t=11, we get another announcement: "I'm R1, and A is 1 away from me." R1 is re-sending its announcement from earlier. Again, we look in our table, and we still have an entry for A, so we reject this announcement again.
 
 Again, if only we had some way to know that our existing route is busted...then we could accept this new advertisement. With our current approach, however, we're doomed to keep using the busted path for the remaining 5 seconds.
 
@@ -348,7 +348,7 @@ Again, if only we had some way to know that our existing route is busted...then 
 
 Time passes. By t=16 (five seconds later), the busted route TTL finally reaches 0, and we can delete this entry from the table.
 
-Also at t=16, R1 re-sends its announcement again: ``I'm R1, and A is 1 away from me.'' Finally, our table doesn't have a route to A (the busted route just got deleted), so we can accept this announcement.
+Also at t=16, R1 re-sends its announcement again: "I'm R1, and A is 1 away from me." Finally, our table doesn't have a route to A (the busted route just got deleted), so we can accept this announcement.
 
 <img width="900px" src="/assets/routing/2-063-poison4.png">
 
@@ -358,7 +358,7 @@ The key problem here is: When something fails, it's not being reported, so we're
 
 The solution is **poison**: When something fails, if possible, explicitly advertise that a path is busted.
 
-In English, the new poison announcement that R2 sends would say: ``I'm R2, and I no longer have a way to reach A.'' In the protocol, we encode this message by advertising a path with cost infinity: ``I'm R2, and A is infinity away from me.'' This infinite-cost path represents a busted path.
+In English, the new poison announcement that R2 sends would say: "I'm R2, and I no longer have a way to reach A." In the protocol, we encode this message by advertising a path with cost infinity: "I'm R2, and A is infinity away from me." This infinite-cost path represents a busted path.
 
 Poisoned paths propagate just like any other path. If we're forwarding packets to R2, and we get a poison message from R2, we update our forwarding table and replace the cost with infinity (per Rule 2). We can also advertise this infinite-cost poison to our neighbors, so they are also alerted of the busted path. This allows an invalid path to propagate through the network, which can be much faster than waiting for the path to time out.
 
@@ -368,13 +368,13 @@ Let's rewatch the demo from earlier, but with poisoning on route expiry. As befo
 
 At t=6, the A-to-R2 link goes down! The table entry is now busted. However, we don't know that this entry is busted just yet.
 
-With our modification, instead of saying nothing, R2 sends us a poison announcement: ``I'm R2, and A is infinity away from me.'' Per Rule 2 (accept from next-hop), we notice that R2 is our next hop, so we accept this announcement and update our table.
+With our modification, instead of saying nothing, R2 sends us a poison announcement: "I'm R2, and A is infinity away from me." Per Rule 2 (accept from next-hop), we notice that R2 is our next hop, so we accept this announcement and update our table.
 
 <img width="900px" src="/assets/routing/2-064-poison5.png">
 
 Our table entry now encodes the fact that A is actually unreachable via R2. This entry has a TTL, just like any other table entry. Also, we can advertise this infinite-cost path to our neighbors, just like any other entry. This tells our neighbors that we can no longer reach A either.
 
-Also at t=6, after our table update, we get a new announcement: ``I'm R1, and A is 1 away from me.'' Using this route has distance 2 (1 from link, 1 from advertisement), which is better than infinity (from the table). We accept this advertisement and update the table. Now, packets for A are routed through R1 instead of R2.
+Also at t=6, after our table update, we get a new announcement: "I'm R1, and A is 1 away from me." Using this route has distance 2 (1 from link, 1 from advertisement), which is better than infinity (from the table). We accept this advertisement and update the table. Now, packets for A are routed through R1 instead of R2.
 
 <img width="900px" src="/assets/routing/2-065-poison6.png">
 
@@ -451,7 +451,7 @@ This leads us to a solution called **split horizon**, where we never advertise a
 
 In split horizon, if someone gives me a route, I don't advertise the route back at them.
 
-By contrast, in poison reverse, if someone gives me a route, I explicitly advertise poison back at them. In other words, I explicitly tell them, ``Do not forward packets my way'' (because I'd just forward them back to you).
+By contrast, in poison reverse, if someone gives me a route, I explicitly advertise poison back at them. In other words, I explicitly tell them, "Do not forward packets my way" (because I'd just forward them back to you).
 
 <img width="900px" src="/assets/routing/2-071-poisonreverse1.png">
 
@@ -463,7 +463,7 @@ If we implemented neither fix, this is the point when R3 would advertise its rou
 
 If we implemented split horizon, R3 would not advertise its route back to R2 at this point.
 
-In the poison reverse approach, R3 explicitly sends an advertisement back to R2: ``I'm R3, and A is infinity away from me.''
+In the poison reverse approach, R3 explicitly sends an advertisement back to R2: "I'm R3, and A is infinity away from me."
 
 <img width="900px" src="/assets/routing/2-073-poisonreverse3.png">
 
@@ -477,7 +477,7 @@ In the split horizon approach, no poison gets sent. R2 got its route from R3, so
 
 <img width="900px" src="/assets/routing/2-074-split-and-poison1.png">
 
-By contrast, if we used the poison reverse approach, R3 explicitly sends poison back to R2: ``I'm R3, and A is infinity away from me.'' R2 accepts this advertisement (Rule 2, route from its next-hop), and updates its table to invalidate the path via R3. The poison reverse advertisement immediately eliminates the routing loop.
+By contrast, if we used the poison reverse approach, R3 explicitly sends poison back to R2: "I'm R3, and A is infinity away from me." R2 accepts this advertisement (Rule 2, route from its next-hop), and updates its table to invalidate the path via R3. The poison reverse advertisement immediately eliminates the routing loop.
 
 <img width="900px" src="/assets/routing/2-075-split-and-poison2.png">
 
@@ -517,25 +517,25 @@ At this point, R2 and R3 can't reach A, but R1 thinks that it can still reach A.
 
 <img width="900px" src="/assets/routing/2-078-infinity3.png">
 
-Eventually, R1 sends out an advertisement. R1's path to A is via R3, so by split horizon, it won't advertise to R3. However, R1 will still advertise to R2: ``I'm R1, and A is 2 away from me.''
+Eventually, R1 sends out an advertisement. R1's path to A is via R3, so by split horizon, it won't advertise to R3. However, R1 will still advertise to R2: "I'm R1, and A is 2 away from me."
 
 <img width="900px" src="/assets/routing/2-079-infinity4.png">
 
 R2 doesn't have a way to reach A, so it accepts this route. Now, R2 is fooled into thinking it can reach A with cost 3.
 
-R2 sends out an advertisement about its new route. Split horizon dictates that R2 won't advertise back to R1, but it will still advertise to R3: ``I'm R2, and A is 3 away from me.''
+R2 sends out an advertisement about its new route. Split horizon dictates that R2 won't advertise back to R1, but it will still advertise to R3: "I'm R2, and A is 3 away from me."
 
 <img width="900px" src="/assets/routing/2-080-infinity5.png">
 
 R3 doesn't have a way to reach A, so it accepts this route. Now, R3 is fooled into thinking it can reach A with cost 4.
 
-Next, R3 sends out an advertisement to R1 (not R2, per split horizon): ``I am R3, and A is 4 away from me.''
+Next, R3 sends out an advertisement to R1 (not R2, per split horizon): "I am R3, and A is 4 away from me."
 
 <img width="900px" src="/assets/routing/2-081-infinity6.png">
 
 R1 will accept this advertisement (Rule 2, advertisement from next-hop) and update its table. Now, R1 thinks its cost to A is 5.
 
-Maybe you're seeing where this is going. R1 advertises to R2 (not R3, per split horizon): ``I'm R1, and A is 5 away from me.''
+Maybe you're seeing where this is going. R1 advertises to R2 (not R3, per split horizon): "I'm R1, and A is 5 away from me."
 
 <img width="900px" src="/assets/routing/2-082-infinity7.png">
 
@@ -565,19 +565,19 @@ To solve this problem, we will enforce a maximum cost. In RIP, this value is 15.
 
 With this fix, the loop will still exist for some time, but eventually, all the costs will reach 16 (infinity). Let's watch this in action.
 
-The costs are increasing with every advertisement. Eventually, R1 advertises to R2: ``I'm R1, and A is 14 away from me.'' R2 accepts (per Rule 2) and updates its cost to 15.
+The costs are increasing with every advertisement. Eventually, R1 advertises to R2: "I'm R1, and A is 14 away from me." R2 accepts (per Rule 2) and updates its cost to 15.
 
 <img width="900px" src="/assets/routing/2-086-infinity11.png">
 
-R2 advertises to R3: ``I'm R2, and A is 15 away from me.'' R3 accepts (per Rule 2), but instead of updating its cost to 16, the cost is updated to infinity.
+R2 advertises to R3: "I'm R2, and A is 15 away from me." R3 accepts (per Rule 2), but instead of updating its cost to 16, the cost is updated to infinity.
 
 <img width="900px" src="/assets/routing/2-087-infinity12.png">
 
-Next, R3 advertises to R1: ``I'm R3, and A is infinity away from me.'' R1 accepts (per Rule 2), and now R1 also has a cost of infinity. (Note: This advertisement looks just like poison, though the infinity originated from counting to infinity instead of detecting a failure.)
+Next, R3 advertises to R1: "I'm R3, and A is infinity away from me." R1 accepts (per Rule 2), and now R1 also has a cost of infinity. (Note: This advertisement looks just like poison, though the infinity originated from counting to infinity instead of detecting a failure.)
 
 <img width="900px" src="/assets/routing/2-088-infinity13.png">
 
-Finally, R1 advertises to R2: ``I'm R1, and A is infinity away from me.'' R2 accepts (per Rule 2), and now all the routers have a cost of infinity.
+Finally, R1 advertises to R2: "I'm R1, and A is infinity away from me." R2 accepts (per Rule 2), and now all the routers have a cost of infinity.
 
 <img width="900px" src="/assets/routing/2-089-infinity14.png">
 

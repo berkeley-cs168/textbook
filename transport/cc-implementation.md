@@ -36,7 +36,7 @@ To detect loss, we maintain a single timer for the left-most packet in the windo
 
 How do we adjust the rate for congestion control, and how do we compute the congestion window? It turns out that these two values are directly related, and adjusting the window is achieved by adjusting the rate. The window size and the rate of sending data are correlated by the following equation: rate times RTT = window size.
 
-Intuitively, you can think of window size and rate as the same quantity, expressed in two different ``units of measurement.'' An increased window size means we're sending data faster, and vice-versa.
+Intuitively, you can think of window size and rate as the same quantity, expressed in two different "units of measurement." An increased window size means we're sending data faster, and vice-versa.
 
 To see why this equation holds, consider the first RTT. We can send [window size] number of packets during this first RTT (before any acks arrive), for a rate of window size / RTT.
 
@@ -47,7 +47,7 @@ To convert between packets and bytes, recall that we defined the Maximum Segment
 
 ## Event-Driven Updates
 
-In our conceptual model, our goal is to adjust the rate/window once per ``iteration,'' but we haven't formalized how to measure each iteration. We can roughly define each iteration as one RTT, but the RTT itself is a dynamically changing value that we can't accurately measure.
+In our conceptual model, our goal is to adjust the rate/window once per "iteration," but we haven't formalized how to measure each iteration. We can roughly define each iteration as one RTT, but the RTT itself is a dynamically changing value that we can't accurately measure.
 
 In order to update the window size in a more predictable, measurable way, we can consider the various events that the existing TCP implementation responds to, and update the window each time one of these events occurs. These are called **event-driven updates**.
 
@@ -88,7 +88,7 @@ When we get the ack for C, we can increase the window to 4 packets. There are st
 
 In general, assuming no loss and no re-ordering, every time we receive an ack, the sliding window allows us to send one more packet, and the increased window allows us to send another packet. Because every ack leads to 2 packets being sent, we get the behavior where the window doubles every RTT. For example, within an RTT interval where we receive 16 acks, each ack triggers to packets being sent, for a total of 32 packets. Then, in the next RTT interval, those 32 packets will be acked, triggering 64 packets being sent.
 
-Eventually, after some time spent doubling the window every RTT (increasing the window by 1 for every ack), we'll encounter loss. This also means we've learned the maximum allowable ``safe'' rate for sending packets without encountering loss. We'll remember this rate in a new parameter called SSTHRESH (slow start threshold). Specifically, as soon as we encounter packet loss, we'll set SSTHRESH to half the window size. For example, if a window of 16 packets doesn't cause loss, but a window of 32 packets does cause loss, then we would set SSTHRESH to 16.
+Eventually, after some time spent doubling the window every RTT (increasing the window by 1 for every ack), we'll encounter loss. This also means we've learned the maximum allowable "safe" rate for sending packets without encountering loss. We'll remember this rate in a new parameter called SSTHRESH (slow start threshold). Specifically, as soon as we encounter packet loss, we'll set SSTHRESH to half the window size. For example, if a window of 16 packets doesn't cause loss, but a window of 32 packets does cause loss, then we would set SSTHRESH to 16.
 
 <img width="700px" src="/assets/transport/3-072-ssthresh-ss.png">
 

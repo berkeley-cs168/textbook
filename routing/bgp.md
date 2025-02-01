@@ -102,7 +102,7 @@ Similarly, if I receive and install a route from a provider, I should only expor
 
 The Gao-Rexford rules allow us to provably show that this statement is true: Assuming that the AS graph is hierarchical and acyclic, and all ASes follow the Gao-Rexford rules, then we can guarantee reachability and convergence in steady state.
 
-Breaking down the specific terms in the statement: Reachability means that any two ASes in the graph can communicate. Convergence means that all ASes will eventually stop updating their paths, and the network will reach a steady state with valid paths between any two ASes. ``In steady state'' means that if the network topology changes, the paths might take some time to change and reach steady state again.
+Breaking down the specific terms in the statement: Reachability means that any two ASes in the graph can communicate. Convergence means that all ASes will eventually stop updating their paths, and the network will reach a steady state with valid paths between any two ASes. "In steady state" means that if the network topology changes, the paths might take some time to change and reach steady state again.
 
 Recall that hierarchical means that starting from any AS, moving up the hierarchy (from customers to providers) will lead to a Tier 1 AS. Acyclic means there is no cycle of customer-provider relationships (directed edges).
 
@@ -136,15 +136,15 @@ Now that each AS is choosing routes based on its own preferences, we've lost the
 
 To fix this problem, instead of the distance to destination, BGP announcements will include the full AS path to the destination. This changes the protocol from a distance-vector to a **path-vector** protocol.
 
-For example, in a distance-vector protocol, A would announce: ``I can reach the destination with cost 1.'' Then, B would announce: ``I can reach the destination with cost 2.''
+For example, in a distance-vector protocol, A would announce: "I can reach the destination with cost 1." Then, B would announce: "I can reach the destination with cost 2."
 
-In a path-vector protocol, A would announce: ``I can reach the destination with the path [A].'' Then, B would announce: ``I can reach the destination with the path [B, A].''
+In a path-vector protocol, A would announce: "I can reach the destination with the path [A]." Then, B would announce: "I can reach the destination with the path [B, A]."
 
 With this modification, ASes can determine whether an advertised path contains a loop by tracing through the path in the advertisement. Specifically, if I receive an advertisement, I just need to check if the path includes myself. That would cause the packet to be sent back to me, creating a loop, so I would ignore that advertisement and not accept or advertise the route with the loop.
 
 Note: If everybody agrees to discard routes with loops, this guarantees that advertisements won't contain loops. The only way that an advertised route would create a loop is if I see a route that already includes myself, and the addition of myself is what creates the loop.
 
-The change from distance-vector to path-vector also allows ASes to implement arbitrary policies. In a distance-vector protocol, I might have a policy like ``avoid AS\#2063 when possible.'' If I receive an advertisement ``I can reach the destination with cost 12,'' I have no idea if the path being advertised goes through AS\#2063. If instead, the advertisement contained the entire path, I can check if the path goes through AS\#2063 before deciding to accept or reject it.
+The change from distance-vector to path-vector also allows ASes to implement arbitrary policies. In a distance-vector protocol, I might have a policy like "avoid AS\#2063 when possible." If I receive an advertisement "I can reach the destination with cost 12," I have no idea if the path being advertised goes through AS\#2063. If instead, the advertisement contained the entire path, I can check if the path goes through AS\#2063 before deciding to accept or reject it.
 
 Note: The conventional BGP import policy we saw earlier (prefer selecting routes that go to customers, over peers, over providers) only depends on the next hop, not the entire path. Still, the change to path-vector is useful for loop detection, and lets us generalize the protocol to arbitrary policies.
 

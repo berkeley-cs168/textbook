@@ -108,16 +108,16 @@ The hierarchy structure of the AS graph is defined by real-world business and po
 
 Recall that in intra-domain routing, our goal was to find paths that are valid (no loops and no dead-ends) and good (least cost).
 
-In inter-domain routing, we still want paths to be valid. However, unlike in intra-domain routing, where there was nothing special about one router over another, each autonomous system has its own business goals and relationships with other ASes (e.g. customer, provider, peer). Therefore, we will need to re-define ``good'' to reflect the real-world business goals and preferences of ASes.
+In inter-domain routing, we still want paths to be valid. However, unlike in intra-domain routing, where there was nothing special about one router over another, each autonomous system has its own business goals and relationships with other ASes (e.g. customer, provider, peer). Therefore, we will need to re-define "good" to reflect the real-world business goals and preferences of ASes.
 
 In order to allow each AS to carry traffic in a way that's compatible with its real-world goals, our routing protocol will allow each AS to set its own policy. Then, the paths computed by the protocol should properly respect each AS's policy.
 
 In theory, ASes can set any sort of policy that they like, although standard conventions do exist (which we'll discuss next). Here are some examples of policies that an AS could set:
 
-- ``I don't want to carry AS\#2046's traffic through my network.'' (Defining how I will handle traffic from other ASes.)
-- ``I prefer if my traffic was carried by AS\#10 instead of AS\#4.'' (Defining how other ASes should handle my traffic.)
-- ``Don't send my traffic through AS\#54 unless absolutely necessary.''
-- ``I prefer AS\#12 on weekdays, and AS\#13 on weekends.'' (Policies can change over time!)
+- "I don't want to carry AS\#2046's traffic through my network." (Defining how I will handle traffic from other ASes.)
+- "I prefer if my traffic was carried by AS\#10 instead of AS\#4." (Defining how other ASes should handle my traffic.)
+- "Don't send my traffic through AS\#54 unless absolutely necessary."
+- "I prefer AS\#12 on weekdays, and AS\#13 on weekends." (Policies can change over time!)
 
 The routing protocol doesn't care why the AS has these preferences. Perhaps I'm refusing to carry traffic from AS\#2046 because it's a rival company, but the protocol doesn't need to know that.
 
@@ -242,5 +242,5 @@ ASes also want **privacy**. ASes don't want to have to explicitly tell others in
 
 Note that our definition of privacy says that ASes shouldn't need to *explicitly* reveal their policies. In practice, ASes still need to coordinate with the rest of the network to agree on paths through the network, so some amount of information leakage is inevitable. Reverse-engineering techniques exist to trace the routes packets are taking through the network.
 
-For example, it's unavoidable that others on the network can discover what route a packet is taking. However, our protocol shouldn't force an AS to tell the world ``I liked this path more than this other path.'' We also shouldn't force an AS to disclose who their providers, peers, and customers are.
+For example, it's unavoidable that others on the network can discover what route a packet is taking. However, our protocol shouldn't force an AS to tell the world "I liked this path more than this other path." We also shouldn't force an AS to disclose who their providers, peers, and customers are.
 
