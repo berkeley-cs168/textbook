@@ -68,7 +68,7 @@ We now know that our entries can represent entire ranges of addresses, instead o
 
 <img width="900px" src="/assets/routing/2-104-aggregation1.png">
 
-Consider R4. It has an entry for every external network (1.*, 2.*, etc.), all with the same next hop of R3. We could aggregate every external network into a single entry. We'll still have entries for every internal host (3.1, 3.2, etc.), but at the end, we'll say: For all other hosts not in the forwarding table, the next hop is R9.
+Consider R4. It has an entry for every external network (1.\*, 3.\*, and 4.\*), all with the same next hop of R9. We could aggregate every external network into a single entry. We'll still have entries for every internal host (2.1, 2.2, etc.), but at the end, we'll say: For all other hosts not in the forwarding table, the next hop is R9.
 
 <img width="900px" src="/assets/routing/2-105-aggregation2.png">
 
