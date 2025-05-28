@@ -53,11 +53,11 @@ We can divide this problem into two parts:
 
 1. How do routers know what groups their directly-connected hosts belong to? We'll use a protocol called IGMP to solve this.
 
-<img width="900px" src="/assets/beyond-client-server/7-009-igmp-taxonomy.png">
+    <img width="900px" src="/assets/beyond-client-server/7-009-igmp-taxonomy.png">
 
 2. How do routers forward packets through the network to reach the destination group members? We'll look at two protocols for solving this: DVMRP and CBT. Both protocols achieve the same goal, so you can pick either one for your implementation (the same way you can pick either distance-vector or link-state, but not both).
 
-<img width="900px" src="/assets/beyond-client-server/7-010-dvmrp-cbt-taxonomy.png">
+    <img width="900px" src="/assets/beyond-client-server/7-010-dvmrp-cbt-taxonomy.png">
 
 
 ## IGMP: Directly-Connected Hosts
