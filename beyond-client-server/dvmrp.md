@@ -54,7 +54,7 @@ If we took this graph and just reversed all the arrows, we now have a suitable s
 
 <img width="500px" src="/assets/beyond-client-server/7-016-multicast-trees.png">
 
-At this point, thinking about reversed arrows can be confusing, so let's switch to using some less confusing terminology. In the tree of routers, every router has exactly one parent, and zero or more children. The router at the "top" of the tree is the root, and routers at the "bottom" of the tree with no children are called leaves. (These are the same definitions that you're probably used to from any data structures course. Nothing special about them.) 
+At this point, thinking about reversed arrows can be confusing, so let's switch to using some less confusing terminology. In the tree of routers, every router has exactly one parent, and zero or more children. The router at the "top" of the tree is the root, and routers at the "bottom" of the tree with no children are called leaves. (These are the same definitions that you're probably used to from any data structures course. Nothing special about them.)
 
 When we thought about unicast routing, the root was the destination. Everyone receives packets from their children, and forwards their packets to their parents, "upwards" toward the destination.
 
@@ -93,7 +93,7 @@ The multicast forwarding table lists your children. This table is constructed by
 
 One last, but important, observation: In distance-vector unicast routing, we built one spanning tree for every destination. As a result, our unicast forwarding table has one next-hop for every destination. In other words, for each destination, you have a parent for that particular tree.
 
-When we reverse the arrows, we now end up with one spanning tree for every source. Our multicast forwarding table has a list of children for each different source. In other words, a multicast forwarding table entry can be interpreted as: "If you receive a packet from source A, forward it to children R5, R6, R7."
+When we reverse the arrows, we now end up with one spanning tree for every source. Our multicast forwarding table has a list of children for each different source. In other words, a multicast forwarding table entry can be interpreted as: "If you receive a packet from source A, forward it to children R6, R7."
 
 <img width="900px" src="/assets/beyond-client-server/7-021-multiple-rpb-trees-1.png">
 

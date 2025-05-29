@@ -139,17 +139,17 @@ To see why, consider this topology with loops. Suppose all switches are learning
 
 <img width="700px" src="/assets/end-to-end/5-021-loop.png">
 
-R1 has no entry for B, so it floods the packet to R2 (and R4).
+R1 has no entry for B, so it floods the packet to R2 (and R3).
 
-R2 has no entry for B, so it floods the packet to R3.
+R2 has no entry for B, so it floods the packet to R4.
 
-R3 has no entry for B, so it floods the packet to R4.
+R4 has no entry for B, so it floods the packet to R3.
 
-R4 has no entry for B, so it floods the packet to R1.
+R3 has no entry for B, so it floods the packet to R1.
 
 R1 has no entry for B, so it floods the packet to R2, and the cycle continues.
 
-At the same time, a copy of the packet is also traveling in a loop in the other direction: R1 flooded to R4 initially, which then flooded to R3, which then flooded to R2, which then flooded to R1, which then floods to R4, continuing the cycle.
+At the same time, a copy of the packet is also traveling in a loop in the other direction: R1 flooded to R3 initially, which then flooded to R4, which then flooded to R2, which then flooded to R1, which then floods to R3, continuing the cycle.
 
 During this entire process, the switches install forwarding entries for A, but they never get any entries for B, so the infinite loop is never resolved. Nobody has a forwarding entry for B, so everybody floods the packet when they receive it.
 
@@ -176,7 +176,7 @@ How does STP decide which links to disable? Let's start by solving this problem 
 
 The first step in STP is to elect a **root switch**, as follows:
 
-Each switch is assigned an ID, consisting of a priority value (manually set by the network operator), and the MAC address of the switch. 
+Each switch is assigned an ID, consisting of a priority value (manually set by the network operator), and the MAC address of the switch.
 
 When comparing two switches, the switch with the lower priority has the lower ID. If the priorities are tied, then the switch with the lower MAC address has the lower ID.
 
@@ -246,7 +246,7 @@ By contrast, designated links cannot be safely disabled, because they lead away 
 
 With this strategy, every link is disabled by only one side. The side that's further away asks the question: Am I using this link as my best path to root? If yes, this link's port is a root port. If no, this link's port is a blocked port.
 
-The side that's closer always makes this link's port a designated port. This has the effect of leaving the decision to disable up to the further side. This is good, because the closer side has no idea if the further side will be using this link as their best path to root. 
+The side that's closer always makes this link's port a designated port. This has the effect of leaving the decision to disable up to the further side. This is good, because the closer side has no idea if the further side will be using this link as their best path to root.
 
 <img width="800px" src="/assets/end-to-end/5-030-stp-why-it-works.png">
 

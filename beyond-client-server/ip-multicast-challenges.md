@@ -26,11 +26,11 @@ The IP multicast service model is fundamentally at odds with the business model 
 
 As peers, AS A and AS B should be able to exchange equivalent amounts of traffic, but multicast makes it difficult to define what counts as equivalent traffic. As an example, suppose AS A sends a multicast packet to AS B. It's possible that AS B has many children who are part of the group. This means that AS B received one packet, but had to send out many packets. AS B used much more bandwidth here than AS A did. Does AS A need to pay some extra to AS B because of this? (It's an open question, with no clear answer.)
 
-As another example, consider this AS graph, where AS A is the customer and AS B is the provider:
+As another example, consider this AS graph, where AS A is the provider and AS B is the customer:
 
 <img width="200px" src="/assets/beyond-client-server/7-049-multicast-charging-2.png">
 
-AS A is paying AS B for service. What if AS A sends a multicast packet, and AS B has to forward copies of that packet to many other destinations? Should AS B charge more for this packet compared to a unicast packet, and if so, how much more should AS B charge? (It's an open question, with no clear answer.)
+AS B is paying AS A for service. What if AS B sends a multicast packet, and AS A has to forward copies of that packet to many other destinations? Should AS A charge more for this packet compared to a unicast packet, and if so, how much more should AS A charge? (It's an open question, with no clear answer.)
 
 Designing a business model is made more difficult by the fact that the IP multicast model does not explicitly keep track of group size. If you wanted to charge users based on the size of the destination group, there's no clear way to determine the size of any given destination group. Your forwarding tables tell you about your parent and your children on different delivery trees, but the tables do not tell you how many end hosts will be receiving this packet in total.
 
