@@ -81,29 +81,29 @@ Now, our strategy for routing packets can combine the overlay and underlay netwo
 
 1. VM A creates a packet with a single IP header, which contains the virtual IP address of B. (Remember, A is thinking in terms of overlay, and does not know about underlay physical IP addresses.) VM A forwards this packet to the virtual switch (on A's physical server).
 
-<img width="900px" src="/assets/datacenter/6-049-virtual4.png">
+    <img width="900px" src="/assets/datacenter/6-049-virtual4.png">
 
 2. The virtual switch reads the header to learn B's virtual IP address. Then, the virtual switch looks up the physical server address corresponding to B's virtual IP address. (We haven't described how to do this yet.)
 
-The virtual switch adds an additional outer header containing B's physical server address. Adding the header is sometimes called **encapsulation**.
+    The virtual switch adds an additional outer header containing B's physical server address. Adding the header is sometimes called **encapsulation**.
 
-At this point, the packet has two headers. The inner header (higher layer, overlay, added by VM A) contains B's virtual IP address, and the outer header (lower layer, underlay, added by virtual switch) contains B's physical server address.
+    At this point, the packet has two headers. The inner header (higher layer, overlay, added by VM A) contains B's virtual IP address, and the outer header (lower layer, underlay, added by virtual switch) contains B's physical server address.
 
-The virtual switch forwards this packet to the next hop switch, based on the physical server address.
+    The virtual switch forwards this packet to the next hop switch, based on the physical server address.
 
-<img width="900px" src="/assets/datacenter/6-050-virtual5.png">
+    <img width="900px" src="/assets/datacenter/6-050-virtual5.png">
 
 3. The packet is sent through the underlay network. Each switch in the datacenter only looks at the outer header (underlay, physical server address) to decide how to forward the packet. (Remember, the datacenter switches think in terms of underlay, and do not know about the overlay virtual IP address.)
 
-<img width="900px" src="/assets/datacenter/6-051-virtual6.png">
+    <img width="900px" src="/assets/datacenter/6-051-virtual6.png">
 
-<img width="900px" src="/assets/datacenter/6-052-virtual7.png">
+    <img width="900px" src="/assets/datacenter/6-052-virtual7.png">
 
 4. Eventually, the packet reaches the destination physical server's virtual switch. The virtual switch looks at the outer header (underlay) and notices that the destination physical server address is itself.
 
-The virtual switch removes the outer header, exposing the inner header inside. Removing the outer header is sometimes called **decapsulation**.
+    The virtual switch removes the outer header, exposing the inner header inside. Removing the outer header is sometimes called **decapsulation**.
 
-<img width="900px" src="/assets/datacenter/6-053-virtual8.png">
+    <img width="900px" src="/assets/datacenter/6-053-virtual8.png">
 
 Finally, the virtual switch reads the inner header (overlay). This tells the virtual switch which of the VMs on the physical server the packet should be forwarded to.
 

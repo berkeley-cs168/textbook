@@ -162,29 +162,29 @@ RDMA can be used for several different operations between servers. Each operatio
 
 1. Each server designates some section of its memory to be accessible by the NIC for RDMA transfers. Server A designates the memory corresponding to the file as NIC-readable. Server B designates a blank buffer where it will receive the file as NIC-readable.
 
-<img width="900px" src="/assets/datacenter/6-096-rdma1.png">
+    <img width="900px" src="/assets/datacenter/6-096-rdma1.png">
 
 2. Each server sets up queues. Both NICs now have a send queue, a receive queue, and a completion queue. Note that this step can be done out-of-band, using a traditional protocol like TCP to coordinate between the two servers.
 
-<img width="900px" src="/assets/datacenter/6-097-rdma2.png">
+    <img width="900px" src="/assets/datacenter/6-097-rdma2.png">
 
 3. Server A creates a WQE in the send queue. This WQE contains a pointer to the file, indicating the data to be sent. On the other side, Server B creates a WQE in the receive queue. This WQE contains a pointer to the blank buffer, indicating where the received data should be written.
 
-<img width="900px" src="/assets/datacenter/6-098-rdma3.png">
+    <img width="900px" src="/assets/datacenter/6-098-rdma3.png">
 
-<img width="900px" src="/assets/datacenter/6-099-rdma4.png">
+    <img width="900px" src="/assets/datacenter/6-099-rdma4.png">
 
 4. Once the transfer is queued on both sides, the data transfer can occur, with no involvement from software. The NIC handles everything, including reliability, congestion control, and so on.
 
-<img width="900px" src="/assets/datacenter/6-100-rdma5.png">
+    <img width="900px" src="/assets/datacenter/6-100-rdma5.png">
 
 5. When the transfer is done, the WQEs are removed from the queues. Both NICs generate a CQE, indicating that the transfer is done, and including any relevant status messages (e.g. error messages). Server A's CQE indicates that the data was successfully sent, and Server B's CQE indicates that the data was successfully received.
 
-<img width="900px" src="/assets/datacenter/6-101-rdma6.png">
+    <img width="900px" src="/assets/datacenter/6-101-rdma6.png">
 
 6. Eventually, the applications read the CQE to understand what happened to the transfer.
 
-<img width="900px" src="/assets/datacenter/6-102-rdma7.png">
+    <img width="900px" src="/assets/datacenter/6-102-rdma7.png">
 
 
 ## RDMA Pros, Cons, Applications

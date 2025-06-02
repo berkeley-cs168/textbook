@@ -32,19 +32,19 @@ DHCP has four steps:
 
 1. The new client broadcasts a **Discover** message, asking for configuration information.
 
-<img width="800px" src="/assets/end-to-end/5-050-dhcp1.png">
+    <img width="800px" src="/assets/end-to-end/5-050-dhcp1.png">
 
 2. Any **DHCP server** who can help will unicast an **Offer** to the client, with a configuration that the client can use (e.g. IP address, gateway address, DNS address).
 
-<img width="800px" src="/assets/end-to-end/5-051-dhcp2.png">
+    <img width="800px" src="/assets/end-to-end/5-051-dhcp2.png">
 
 3. The client will broadcast a **Request** message, indicating which offer they accepted. This message is broadcast because the client might get multiple offers. By telling everybody which offer it's accepting, the client allows the rejected offers to be freed up for future clients.
 
-<img width="800px" src="/assets/end-to-end/5-052-dhcp3.png">
+    <img width="800px" src="/assets/end-to-end/5-052-dhcp3.png">
 
 4. The server sends an acknowledgement to confirm that the request was granted.
 
-<img width="800px" src="/assets/end-to-end/5-053-dhcp4.png">
+    <img width="800px" src="/assets/end-to-end/5-053-dhcp4.png">
 
 
 ## DHCP Servers

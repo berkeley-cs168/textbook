@@ -36,15 +36,15 @@ By combining our picture of the training model with our picture of distributed c
 
 1. Split the task up into sub-tasks. Each node runs a sub-task.
 
-<img width="900px" src="/assets/beyond-client-server/7-063-distributed-1.png">
+    <img width="900px" src="/assets/beyond-client-server/7-063-distributed-1.png">
 
 2. After every node finishes their sub-task, everyone exchanges a large amount of state.
 
-<img width="800px" src="/assets/beyond-client-server/7-064-distributed-2.png">
+    <img width="800px" src="/assets/beyond-client-server/7-064-distributed-2.png">
 
 3. Proceed to the next task, and repeat steps 1-2 for the next task.
 
-<img width="900px" src="/assets/beyond-client-server/7-065-distributed-3.png">
+    <img width="900px" src="/assets/beyond-client-server/7-065-distributed-3.png">
 
 Our focus is the data exchange in the second step, and how to make this data exchange efficient.
 

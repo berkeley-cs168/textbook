@@ -92,11 +92,11 @@ R5 might not hear about both paths simultaneously, so we'll need to be more prec
 
 1. If the table doesn't have a path to the destination, accept the path. If I don't have a way to reach A, I should accept any path offered.
 
-<img width="900px" src="/assets/routing/2-039-multipath3.png">
+    <img width="900px" src="/assets/routing/2-039-multipath3.png">
 
 2. If the new path (that we hear about) is better than the best-known path (from the forwarding table), we should accept the new path, and replace the old path from the table.
 
-<img width="900px" src="/assets/routing/2-040-multipath4.png">
+    <img width="900px" src="/assets/routing/2-040-multipath4.png">
 
 3. If the new path (that we hear about) is worse than the best-known path (from the forwarding table), we should ignore the new path, and keep using the path in the table.
 
