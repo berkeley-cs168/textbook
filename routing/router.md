@@ -20,7 +20,7 @@ So far, we've drawn routers as boxes on a diagram. In reality, a router is a spe
 
 In real life, homes and offices have small routers to connect hosts to the Internet. Where do all these routers all connect to each other?
 
-<img width="700px" src="/assets/routing/2-114-carrier-hotel.png">
+<img width="700px" class="real-photo" src="/assets/routing/2-114-carrier-hotel.png">
 
 **Colocation facilities** or **carrier hotels** are buildings where multiple ISPs install routers to connect to each other. These buildings are specially designed to have power and cooling infrastructure, and ISPs can rent space to install routers and connect them to other routers in the same building.
 
@@ -31,7 +31,7 @@ Inside a carrier hotel, routers are stacked together into racks (6-7 feet tall, 
 
 Routers come in all sizes, depending on the user requirements. Home routers only forward traffic for a few users, and the forwarding table has a single default entry. Industrial routers might need to forward traffic from thousands of customers, with a huge forwarding table.
 
-<img width="800px" src="/assets/routing/2-115-router-sizes.png">
+<img width="800px" class="real-photo" src="/assets/routing/2-115-router-sizes.png">
 
 There are different ways we can measure the size of a router. We could consider its physical size, the number of physical ports it has, and its bandwidth.
 
@@ -39,7 +39,7 @@ We can measure a router's capacity as the number of physical ports, multiplied b
 
 Not all physical ports need to have the same line rate. For example, a modern home router might have 4 physical ports that can send at 100 Mbps, and 1 physical port that can send at 1 Gbps. The total capacity of this router is 1.4 Gbps.
 
-<img width="200px" src="/assets/routing/2-116-modern-router.png">
+<img width="200px" class="real-photo" src="/assets/routing/2-116-modern-router.png">
 
 A modern state-of-the-art router used by ISPs might have a line rate of up to 400 Gbps per physical port.
 
@@ -51,7 +51,7 @@ This router could cost upwards of \$1 million. Breaking up a router into line ca
 
 In the future, next-generation routers will have 800 Gbps physical ports. Physical space for routers is constrained, so modern improvements are focused on improving the speed per port, instead of increasing the number of ports. (Stuffing more ports into the same space is also difficult because of power and cooling constraints.)
 
-<img width="700px" src="/assets/routing/2-117-router-evolution.png">
+<img width="700px" class="real-photo" src="/assets/routing/2-117-router-evolution.png">
 
 Router capacity has increased over the years in response to the growth in user demand (e.g. video quality has increased from 720p to 8K = 8000p). In 2010, state-of-the-art routers had 1.7 Tbps capacity, and that's increased by a factor of 100 in the past decade. Much of this improvement came from increasing the link speed, from 10 Gbps in 2010 to 100 Gbps around 2016 to 400 Gbps today. These improvements are starting to slow down because of constraints like Moore's law slowing and physical challenges with sending signals at high rate. The next improvement to 800 Gbps is only a 2x increase (compared to the earlier 10x and 4x increases).
 

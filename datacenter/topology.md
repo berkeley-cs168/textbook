@@ -33,11 +33,11 @@ This map shows the wide area network (WAN) of all the networks owned by a tech g
 
 The peering locations connect Google to the rest of the Internet. These mainly consist of Google-operated routers that connect to other autonomous systems.
 
-<img width="900px" src="/assets/datacenter/6-004-peering.png">
+<img width="900px" class="real-photo" src="/assets/datacenter/6-004-peering.png">
 
 In addition to peering locations, Google also operates many datacenters. Applications in datacenters can communicate with the rest of the Internet via the peering locations. The datacenters and peering locations are all connected through Google-managed routers and links in Google's wide area network.
 
-<img width="900px" src="/assets/datacenter/6-005-datacenter-irl1.png">
+<img width="900px" class="real-photo" src="/assets/datacenter/6-005-datacenter-irl1.png">
 
 Datacenters and peering locations optimize for different performance goals, so they're often physically located in different places.
 
@@ -45,7 +45,7 @@ Peering locations care about being physically close to other companies and netwo
 
 By contrast, datacenters care less about being close to other companies, and instead prioritize requirements like physical space, power, and cooling. As a result, datacenters are often located in less-populated areas, sometimes with a nearby river (for cooling) or power station (datacenters might need hundreds of times more power than peering locations).
 
-<img width="800px" src="/assets/datacenter/6-006-datacenter-irl2.png">
+<img width="800px" class="real-photo" src="/assets/datacenter/6-006-datacenter-irl2.png">
 
 ## Why is the Datacenter Different?
 
@@ -79,13 +79,13 @@ Connections that go outside the network (e.g. to end users or other datacenters)
 
 A datacenter fundamentally consists of many servers. The servers are organized in physical racks, where each rack has 40-48 rack units (slots), and each rack unit can fit 1-2 servers.
 
-<img width="500px" src="/assets/datacenter/6-009-rack1.png">
+<img width="500px" class="real-photo" src="/assets/datacenter/6-009-rack1.png">
 
 We'd like all the servers in the datacenter to be able to communicate with each other, so we need to build a network to connect them all. What does this network look like? How do we efficiently install links and switches to meet our requirements?
 
 First, we can connect all the servers within a single rack. Each rack has a single switch called a **top-of-rack (TOR) switch**, and every server in the rack has a link (called an **access link** or **uplink**) connecting to that switch. The TOR is a relatively small router, with a single forwarding chip, and physical ports connecting to all the servers on the rack. Each server uplink typically has a capacity of around 100 Gbps.
 
-<img width="500px" src="/assets/datacenter/6-010-rack2.png">
+<img width="500px" class="real-photo" src="/assets/datacenter/6-010-rack2.png">
 
 Next, we have to think about how to connect the racks together. Ideally, we'd like every server to talk to every other server at their full line rate (i.e. using the entire uplink bandwidth).
 
@@ -263,11 +263,11 @@ In summary: Out of $$k^2$$ total ports, half of them are used to interconnect ag
 
 ## Real-World Topologies
 
-<img width="900px" src="/assets/datacenter/6-029-irl-topology1.png">
+<img width="900px" class="real-photo" src="/assets/datacenter/6-029-irl-topology1.png">
 
 In this example (2008), there are many different paths between any two end hosts.
 
-<img width="900px" src="/assets/datacenter/6-030-irl-topology2.png">
+<img width="900px" class="real-photo" src="/assets/datacenter/6-030-irl-topology2.png">
 
 In this paper (2015), various topologies were explored.
 
