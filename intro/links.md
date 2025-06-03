@@ -150,7 +150,7 @@ This allows queues to help us absorb transient bursts.
 
 What if the incoming links looked like this?
 
-<img width="700px" src="/assets/intro/1-75-persisent.png">
+<img width="700px" src="/assets/intro/1-75-persistent.png">
 
 Now we have **persistent overload**. There just isn't enough capacity on the outgoing link to support the level of incoming traffic.
 

@@ -46,7 +46,6 @@ By combining our picture of the training model with our picture of distributed c
 
     <img width="900px" src="/assets/beyond-client-server/7-065-distributed-3.png">
 
-
 Our focus is the data exchange in the second step, and how to make this data exchange efficient.
 
 Again, we don't care about exactly what data is being exchanged. Depending on how we distribute the work, and depending on the specific AI model we're building, the nature of the data we're exchanging can be slightly different. Our focus is on how that data is exchanged.

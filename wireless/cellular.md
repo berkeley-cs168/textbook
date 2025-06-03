@@ -26,7 +26,7 @@ In the future, high-performance applications that require wireless mobile techno
 
 Cellular technology has its roots in the old telephone system. Cellular networks were first developed to allow users to make phone calls wirelessly, instead of on a wired landline. The first mobile phone was sold in 1983 for \$4,000 (way more today, after inflation).
 
-<img width="900px" src="/assets/wireless/8-030-first-phone.png">
+<img width="900px" class="real-photo" src="/assets/wireless/8-030-first-phone.png">
 
 Because cellular technology was derived from the telephone network (not the Internet), many of the design choices differ from the traditional Internet. For many years, cellular technology (e.g. pre-smartphone cell phones for voice calls) and the Internet developed in parallel, each with a different set of architectural choices.
 
@@ -75,7 +75,7 @@ The radio tower has an antenna. Inside the tower is a radio transceiver, which c
 
 Also inside the tower is a radio controller, which decides how to allocate radio resources.
 
-<img width="900px" src="/assets/wireless/8-032-towers.png">
+<img width="900px" class="real-photo" src="/assets/wireless/8-032-towers.png">
 
 You can think of the controller like a CPU running a scheduler. The controller allocates different segments of frequency and time to different customers, depending on demand and business model (e.g. how much the customer is paying). This is actually a pretty difficult scheduling problem, though we won't discuss further here.
 

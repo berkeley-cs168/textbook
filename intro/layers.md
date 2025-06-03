@@ -22,7 +22,7 @@ In the analogy, now that we have a way to send data across space, we can use tha
 
 In the Internet, a **link** connects two machines. That link could be using any sort of technology (wired, wireless, optical fiber, etc.). If we use links to connect up a bunch of nearby computers (e.g. all the computers in UC Berkeley), we get a **local area network (LAN)**.
 
-<img width="200px" src="/assets/intro/1-01-lan.png">
+<img width="175px" src="/assets/intro/1-01-lan.png">
 
 At Layer 2, we can also group bits into units of data called **packets** (sometimes called frames at this layer), and define where a packet starts and ends in the physical signal. We can also handle problems like multiple people simultaneously using the same wire to send data.
 
