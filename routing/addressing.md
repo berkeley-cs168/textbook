@@ -72,7 +72,7 @@ Consider R4. It has an entry for every external network (1.\*, 3.\*, and 4.\*), 
 
 <img width="900px" src="/assets/routing/2-105-aggregation2.png">
 
-We can use more aggressive aggregation at R2. Again, all external networks have a next hop of R3. But, 3.1, 3.2, 3.3, 3.6, and 3.7 also have a next hop of R3. Therefore, the forwarding table only needs static entries for 3.4 and 3.5. Then, we can say, for all other hosts not in the forwarding table (including some internal and some external hosts), the next hop is R3.
+We can use more aggressive aggregation at R2. Again, all external networks have a next hop of R3. But, 2.1, 2.2, 2.3, 2.6, and 2.7 also have a next hop of R3. Therefore, the forwarding table only needs static entries for 2.4 and 2.5. Then, we can say, for all other hosts not in the forwarding table (including some internal and some external hosts), the next hop is R3.
 
 To represent all hosts not in the table, we can use a wildcard *.* that matches everything. When forwarding toward a given destination, the router first checks specific hosts (e.g. 3.1) or ranges (e.g. 2.*) for matches. If the router can't find any matches, it will eventually match the *.* wildcard. This is called the **default route**.
 
