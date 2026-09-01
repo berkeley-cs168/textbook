@@ -33,7 +33,9 @@ If you look at this diagram, you'll notice there's only one protocol at Layer 3.
 
 ## Demultiplexing
 
-TODO write about demultiplexing.
+Demultiplexing is how a device determines which higher-level protocol or application should receive an incoming packet. Each layer includes a field in its header that identifies what protocol should process the payload next. For example, an IP header indicates whether its payload contains TCP or UDP, and a TCP/UDP header contains a destination port number that identifies the application/socket that should receive the data.
+
+When a packet arrives at a host, the networking stack repeatedly demultiplexes it: the Layer 2 header determines which Layer 3 protocol should handle the packet, the Layer 3 header determines which Layer 4 protocol should handle it, and the Layer 4 destination port helps the OS determine which application socket should receive the data.
 
 <img width="900px" src="/assets/intro/1-32-demultiplex.png">
 
