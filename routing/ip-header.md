@@ -76,7 +76,7 @@ IPv6 **eliminates fragmentation**. If an IPv6 packet is too large for a specific
 
 IPv6 replaces the variable-length options section with a modified implementation of the protocol field. In IPv4, options were problematic because they created variable-length headers, which are harder to parse. In IPv6, the header is fixed in length. This also means that the **header length** field can be eliminated.
 
-In order to continue supporting options, IPv6 generalizes the protocol field to allow the IP packet to be passed up for special processing before reaching Layer 4. (Recall, the protocol header in IPv4 is set to either 7 or 19, to indicate which Layer 4 protocol processes the packet next.) The field is renamed from protocol to **next header** in IPv6.
+In order to continue supporting options, IPv6 generalizes the protocol field to allow the IP packet to be passed up for special processing before reaching Layer 4. (Recall, the protocol header in IPv4 is set to either 6 or 17, to indicate which Layer 4 protocol processes the packet next.) The field is renamed from protocol to **next header** in IPv6.
 
 <img width="800px" src="/assets/routing/2-200-next-header.png">
 
